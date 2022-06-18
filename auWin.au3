@@ -81,7 +81,7 @@ While 1
 			If GUICtrlRead($match_the_title_from_the_start) = 1 Then AutoItSetOption("WinTitleMatchMode", 1)
 			If GUICtrlRead($match_any_substring_in_the_title) = 1 Then AutoItSetOption("WinTitleMatchMode", 2)
 			If GUICtrlRead($exact_title_match) = 1 Then AutoItSetOption("WinTitleMatchMode", 3)
-			If GUICtrlRead($advanced_mode) = 1 Then AutoItSetOption("WinTitleMatchMode", 4)  ;;;;;;;;;;;;;; geht n if ohne =
+			If GUICtrlRead($advanced_mode) = 1 Then AutoItSetOption("WinTitleMatchMode", 4)
 
             ; Read input fields
             $mode = GUICtrlRead($mode_ctrl)
