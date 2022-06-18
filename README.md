@@ -16,11 +16,11 @@ auWin is a program with which you can easily change attributes of windows and do
 
 - Windows 2008
 
-- Windows Windows 7
+- Windows 7
 
 - Windows 2008 R2
 
-- Windows Windows 8
+- Windows 8
 
 - Windows 2012 R2
 
