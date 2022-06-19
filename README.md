@@ -4,7 +4,7 @@ auWin is a program with which you can easily change attributes of windows and do
 
 ## Requirements
 
-- [Autoit 3](https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3%2Fautoit-v3-setup.zip= "Download from autoitscript.com")
+- [Autoit 3](https://www.autoitscript.com/files/autoit3/autoit-v3-setup.zip "Download from autoitscript.com")
 
 ## Supported operating systems
 
