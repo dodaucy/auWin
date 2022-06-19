@@ -24,6 +24,10 @@ auWin is a program with which you can easily change attributes of windows and do
 
 - Windows 2012 R2
 
+- Windows 10
+
+- Windows 11
+
 ## Preview
 
 ![basic](assets/basic.png)
