@@ -34,7 +34,7 @@ Run `auWin.au3` with [AutoIt 3](https://www.autoitscript.com/files/autoit3/autoi
 
 ### Note
 
-The file could be detected as malware. More information [here](https://www.autoitscript.com/forum/topic/34658-are-my-autoit-exes-really-infected/ "Forum post from autoitscript.com").
+The executable could be detected as malware. More information [here](https://www.autoitscript.com/forum/topic/34658-are-my-autoit-exes-really-infected/ "Forum post from autoitscript.com").
 
 ## Supported operating systems
 
