@@ -4,9 +4,9 @@ auWin is a program with which you can easily change attributes of windows and do
 
 ## Preview
 
-<img src="assets/basic.png" alt="basic">
+![basic](assets/basic.png)
 
-<img src="assets/on_run.png" alt="on run">
+![on run](assets/on_run.png)
 
 ## Run
 
@@ -24,11 +24,11 @@ Run `auWin.au3` with [AutoIt 3](https://www.autoitscript.com/files/autoit3/autoi
 
 1. Right click `auWin.au3` and click on `Compile with Options`. The specified settings for the AutoIt3Wrapper are not loaded using the other options.
 
-<img src="assets/compile_with_options.png" alt="compile with options">
+![compile_with_options](assets/compile_with_options.png)
 
 2. Now just click on `Compile Script`.
 
-<img src="assets/compile_script.png" alt="compile script">
+![compile_script](assets/compile_script.png)
 
 3. There is now an executable in the same folder as the `auWin.au3` file.
 
