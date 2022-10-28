@@ -1,11 +1,11 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;                                          ;
-;                  auWin                   ;
-;                                          ;
-;     Copyright (C) 2022 X Gamer Guide     ;
-;  https://github.com/X-Gamer-Guide/auWin  ;
-;                                          ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                    ;
+;               auWin                ;
+;                                    ;
+;     Copyright (C) 2022 dodaucy     ;
+;  https://github.com/dodaucy/auWin  ;
+;                                    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 #include <ButtonConstants.au3>
