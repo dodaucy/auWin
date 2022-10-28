@@ -88,17 +88,17 @@ While 1
 			$title_class = GUICtrlRead($title_class_ctrl)
 			$handle = GUICtrlRead($handle_ctrl)
             $handle_ptr = Ptr($handle)
+            If $title_class <> "" And $handle <> "" Then
+                WinSetOnTop($gui, "", 0)
+                MsgBox($MB_ICONERROR, "ERROR", "Please enter title, class, handle or nothing")
+                WinSetOnTop($gui, "", 1)
+                ContinueLoop
+            EndIf
 			If $handle <> "" And $handle_ptr = "" Then
                 WinSetOnTop($gui, "", 0)
 				MsgBox($MB_ICONERROR, "ERROR", "Invalid handle")
 				WinSetOnTop($gui, "", 1)
 				ContinueLoop
-            EndIf
-            If $handle <> "" And $handle_ptr <> "" Then
-                WinSetOnTop($gui, "", 0)
-                MsgBox($MB_ICONERROR, "ERROR", "Please enter title, class, handle or nothing")
-                WinSetOnTop($gui, "", 1)
-                ContinueLoop
             EndIf
 
             ; Get window list
@@ -111,9 +111,9 @@ While 1
 			ElseIf $handle_ptr <> "" Then
                 ; Get window with handle
 				If WinExists($handle_ptr) Then
-					$win_list = [[1, ""], [WinGetTitle($handle_ptr), $handle_ptr]]
+                    Local $win_list[2][2] = [[1, ""], [WinGetTitle($handle_ptr), $handle_ptr]]
 				Else
-					$win_list = [[0, ""]]
+					Local $win_list[1][2] = [[0, ""]]
 				EndIf
 			EndIf
 
