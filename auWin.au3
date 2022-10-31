@@ -50,7 +50,7 @@
     $advanced_mode = GUICtrlCreateRadio("Advanced mode", 352, 80, 105, 17)
 
     ; Create mode combo box
-    $mode_ctrl = GUICtrlCreateCombo("display", 8, 64, 97, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+    $action_ctrl = GUICtrlCreateCombo("display", 8, 64, 97, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
     GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|get position|get text")
 
     ; Create start button
@@ -85,7 +85,7 @@ While 1
 
 		Case $start
 
-            ; Set window title match mode
+            ; Set window title match mode$txt
             Switch 1
                 Case GUICtrlRead($match_the_title_from_the_start)
                     AutoItSetOption("WinTitleMatchMode", 1)
@@ -98,7 +98,7 @@ While 1
             EndSwitch
 
             ; Read input fields
-            $mode = GUICtrlRead($mode_ctrl)
+            $action = GUICtrlRead($action_ctrl)
 			$title_class = GUICtrlRead($title_class_ctrl)
 			$handle = GUICtrlRead($handle_ctrl)
             $handle_ptr = Ptr($handle)
@@ -132,7 +132,7 @@ While 1
 			EndIf
 
             ; Ask for transparency if required
-            If $mode = "set transparency" Then
+            If $action = "set transparency" Then
                 WinSetOnTop($gui, "", 0)
                 $trans = InputBox("transparency", "Set the transparency to a value between 0 and 255", "255")
                 WinSetOnTop($gui, "", 1)
@@ -140,7 +140,7 @@ While 1
             EndIf
 
             ; Ask for title if required
-            If $mode = "set title" Then
+            If $action = "set title" Then
                 WinSetOnTop($gui, "", 0)
                 $new_title = InputBox("title", "Set the title")
                 WinSetOnTop($gui, "", 1)
@@ -148,7 +148,7 @@ While 1
             EndIf
 
             ; Ask for position and size if required
-            If $mode = "move" Then
+            If $action = "move" Then
                 WinSetOnTop($gui, "", 0)
                 $x = InputBox("X", "X coordinate to move to", "0")
                 If $x = "" Then
@@ -192,52 +192,52 @@ While 1
 			    If $h <> $gui Then
 
                     ; Run command
-					Switch $mode
+					Switch $action
 						Case "display"
-							$txt = ""
+							$output_text = ""
 						Case "flash"
-							$txt = WinFlash($h)
+							$output_text = WinFlash($h)
 						Case "close"
-							$txt = WinClose($h)
+							$output_text = WinClose($h)
 						Case "kill"
-							$txt = WinKill($h)
+							$output_text = WinKill($h)
 						Case "hide"
-							$txt = WinSetState($h, "", @SW_HIDE)
+							$output_text = WinSetState($h, "", @SW_HIDE)
 						Case "show"
-							$txt = WinSetState($h, "", @SW_SHOW)
+							$output_text = WinSetState($h, "", @SW_SHOW)
 						Case "minimize"
-							$txt = WinSetState($h, "", @SW_MINIMIZE)
+							$output_text = WinSetState($h, "", @SW_MINIMIZE)
 						Case "maximize"
-							$txt = WinSetState($h, "", @SW_MAXIMIZE)
+							$output_text = WinSetState($h, "", @SW_MAXIMIZE)
 						Case "restore"
-							$txt = WinSetState($h, "", @SW_RESTORE)
+							$output_text = WinSetState($h, "", @SW_RESTORE)
 						Case "disable"
-							$txt = WinSetState($h, "", @SW_DISABLE)
+							$output_text = WinSetState($h, "", @SW_DISABLE)
 						Case "enable"
-							$txt = WinSetState($h, "", @SW_ENABLE)
+							$output_text = WinSetState($h, "", @SW_ENABLE)
 						Case "set on top"
-							$txt = WinSetOnTop($h, "", 1)
+							$output_text = WinSetOnTop($h, "", 1)
 						Case "set not on top"
-							$txt = WinSetOnTop($h, "", 0)
+							$output_text = WinSetOnTop($h, "", 0)
 						Case "set transparency"
-							$txt = WinSetTrans($h, "", $trans)
+							$output_text = WinSetTrans($h, "", $trans)
 						Case "set title"
-							$txt = WinSetTitle($h, "", $new_title)
+							$output_text = WinSetTitle($h, "", $new_title)
 						Case "move"
 							If $resize Then
-								$txt = WinMove($h, "", $x, $y, $width, $height)
+								$output_text = WinMove($h, "", $x, $y, $width, $height)
 							Else
-								$txt = WinMove($h, "", $x, $y)
+								$output_text = WinMove($h, "", $x, $y)
 							EndIf
 						Case "get position"
 							$pos = WinGetPos($h)
-							$txt = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
+							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
 						Case "get text"
-							$txt = @CRLF & WinGetText($h)
+							$output_text = @CRLF & WinGetText($h)
 					EndSwitch
 
                     ; Append result to output text box
-					GUICtrlSetData($display, "[" & $h & "] (" & $win_list[$i][0] & ") " & $txt & @CRLF & GUICtrlRead($display))
+					GUICtrlSetData($display, "[" & $h & "] (" & $win_list[$i][0] & ") " & $output_text & @CRLF & GUICtrlRead($display))
 
 				EndIf
 
