@@ -233,7 +233,10 @@ While 1
 							$pos = WinGetPos($h)
 							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
 						Case "get text"
-							$output_text = @CRLF & WinGetText($h)
+							$output_text = WinGetText($h)
+                            If $output_text <> "" Then
+                                $output_text = @CRLF & $output_text
+                            EndIf
 					EndSwitch
 
                     ; Append result to output text box
