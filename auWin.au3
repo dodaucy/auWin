@@ -135,30 +135,42 @@ While 1
             If $mode = "set transparency" Then
                 WinSetOnTop($gui, "", 0)
                 $trans = InputBox("transparency", "Set the transparency to a value between 0 and 255", "255")
-                If $trans = "" Then ContinueLoop
                 WinSetOnTop($gui, "", 1)
+                If $trans = "" Then ContinueLoop
             EndIf
 
             ; Ask for title if required
             If $mode = "set title" Then
                 WinSetOnTop($gui, "", 0)
                 $new_title = InputBox("title", "Set the title")
-                If $new_title = "" Then ContinueLoop
                 WinSetOnTop($gui, "", 1)
+                If $new_title = "" Then ContinueLoop
             EndIf
 
             ; Ask for position and size if required
             If $mode = "move" Then
                 WinSetOnTop($gui, "", 0)
                 $x = InputBox("X", "X coordinate to move to", "0")
-                If $x = "" Then ContinueLoop
+                If $x = "" Then
+                    WinSetOnTop($gui, "", 1)
+                    ContinueLoop
+                EndIf
                 $y = InputBox("Y", "Y coordinate to move to", "0")
-                If $y = "" Then ContinueLoop
+                If $y = "" Then
+                    WinSetOnTop($gui, "", 1)
+                    ContinueLoop
+                EndIf
                 If MsgBox($MB_YESNO, "size", "Would you like to specify a size?") = $IDYES Then
                     $width = InputBox("width", "Width", "0")
-                    If $width = "" Then ContinueLoop
+                    If $width = "" Then
+                        WinSetOnTop($gui, "", 1)
+                        ContinueLoop
+                    EndIf
                     $height = InputBox("height", "Height", "0")
-                    If $height = "" Then ContinueLoop
+                    If $height = "" Then
+                        WinSetOnTop($gui, "", 1)
+                        ContinueLoop
+                    EndIf
                     $resize = True
                 Else
                     $resize = False
