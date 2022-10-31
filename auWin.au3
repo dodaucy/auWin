@@ -186,61 +186,61 @@ While 1
             For $i = 1 To $win_list[0][0] Step 1
 
                 ; Get handle of window
-			    $h = $win_list[$i][1]
+			    $window_handle = $win_list[$i][1]
 
                 ; Ignore itself
-			    If $h <> $gui Then
+			    If $window_handle <> $gui Then
 
                     ; Run command
 					Switch $action
 						Case "display"
 							$output_text = ""
 						Case "flash"
-							$output_text = WinFlash($h)
+							$output_text = WinFlash($window_handle)
 						Case "close"
-							$output_text = WinClose($h)
+							$output_text = WinClose($window_handle)
 						Case "kill"
-							$output_text = WinKill($h)
+							$output_text = WinKill($window_handle)
 						Case "hide"
-							$output_text = WinSetState($h, "", @SW_HIDE)
+							$output_text = WinSetState($window_handle, "", @SW_HIDE)
 						Case "show"
-							$output_text = WinSetState($h, "", @SW_SHOW)
+							$output_text = WinSetState($window_handle, "", @SW_SHOW)
 						Case "minimize"
-							$output_text = WinSetState($h, "", @SW_MINIMIZE)
+							$output_text = WinSetState($window_handle, "", @SW_MINIMIZE)
 						Case "maximize"
-							$output_text = WinSetState($h, "", @SW_MAXIMIZE)
+							$output_text = WinSetState($window_handle, "", @SW_MAXIMIZE)
 						Case "restore"
-							$output_text = WinSetState($h, "", @SW_RESTORE)
+							$output_text = WinSetState($window_handle, "", @SW_RESTORE)
 						Case "disable"
-							$output_text = WinSetState($h, "", @SW_DISABLE)
+							$output_text = WinSetState($window_handle, "", @SW_DISABLE)
 						Case "enable"
-							$output_text = WinSetState($h, "", @SW_ENABLE)
+							$output_text = WinSetState($window_handle, "", @SW_ENABLE)
 						Case "set on top"
-							$output_text = WinSetOnTop($h, "", 1)
+							$output_text = WinSetOnTop($window_handle, "", 1)
 						Case "set not on top"
-							$output_text = WinSetOnTop($h, "", 0)
+							$output_text = WinSetOnTop($window_handle, "", 0)
 						Case "set transparency"
-							$output_text = WinSetTrans($h, "", $trans)
+							$output_text = WinSetTrans($window_handle, "", $trans)
 						Case "set title"
-							$output_text = WinSetTitle($h, "", $new_title)
+							$output_text = WinSetTitle($window_handle, "", $new_title)
 						Case "move"
 							If $resize Then
-								$output_text = WinMove($h, "", $x, $y, $width, $height)
+								$output_text = WinMove($window_handle, "", $x, $y, $width, $height)
 							Else
-								$output_text = WinMove($h, "", $x, $y)
+								$output_text = WinMove($window_handle, "", $x, $y)
 							EndIf
 						Case "get position"
-							$pos = WinGetPos($h)
+							$pos = WinGetPos($window_handle)
 							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
 						Case "get text"
-							$output_text = WinGetText($h)
+							$output_text = WinGetText($window_handle)
                             If $output_text <> "" Then
                                 $output_text = @CRLF & $output_text
                             EndIf
 					EndSwitch
 
                     ; Append result to output text box
-					GUICtrlSetData($display, "[" & $h & "] (" & $win_list[$i][0] & ") " & $output_text & @CRLF & GUICtrlRead($display))
+					GUICtrlSetData($display, "[" & $window_handle & "] (" & $win_list[$i][0] & ") " & $output_text & @CRLF & GUICtrlRead($display))
 
 				EndIf
 
