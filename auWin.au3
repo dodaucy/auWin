@@ -253,7 +253,10 @@ While 1
 					EndSwitch
 
                     ; Append result to output text box
-					GUICtrlSetData($display, "[" & $window_handle & "] (" & $win_list[$i][0] & ") " & $output_text & @CRLF & GUICtrlRead($display))
+                    If $output_text <> "" Then
+                        $output_text = " " & $output_text
+                    EndIf
+					GUICtrlSetData($display, "[" & $window_handle & "] (" & $win_list[$i][0] & ")" & $output_text & @CRLF & GUICtrlRead($display))
 
 				EndIf
 
