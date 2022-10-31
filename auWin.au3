@@ -26,6 +26,18 @@
 #include <MsgBoxConstants.au3>
 
 
+Func ProcessReturnValue($value)
+    If Not IsInt($value) Then
+        Return "Success"
+    EndIf
+    If $value <> 0 Then
+        Return "Success"
+    Else
+        Return "Failed"
+    EndIf
+EndFunc
+
+
 #Region ### Create GUI ###
 
     ; Create GUI
@@ -85,7 +97,7 @@ While 1
 
 		Case $start
 
-            ; Set window title match mode$txt
+            ; Set window title match mode
             Switch 1
                 Case GUICtrlRead($match_the_title_from_the_start)
                     AutoItSetOption("WinTitleMatchMode", 1)
@@ -193,41 +205,42 @@ While 1
 
                     ; Run command
 					Switch $action
-						Case "display"
-							$output_text = ""
+                        Case "display"
+                            $output_text = ""
 						Case "flash"
-							$output_text = WinFlash($window_handle)
+							WinFlash($window_handle)
+                            $output_text = "Flashed"
 						Case "close"
-							$output_text = WinClose($window_handle)
+							$output_text = ProcessReturnValue(WinClose($window_handle))
 						Case "kill"
-							$output_text = WinKill($window_handle)
+                            $output_text = ProcessReturnValue(WinKill($window_handle))
 						Case "hide"
-							$output_text = WinSetState($window_handle, "", @SW_HIDE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_HIDE))
 						Case "show"
-							$output_text = WinSetState($window_handle, "", @SW_SHOW)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_SHOW))
 						Case "minimize"
-							$output_text = WinSetState($window_handle, "", @SW_MINIMIZE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_MINIMIZE))
 						Case "maximize"
-							$output_text = WinSetState($window_handle, "", @SW_MAXIMIZE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_MAXIMIZE))
 						Case "restore"
-							$output_text = WinSetState($window_handle, "", @SW_RESTORE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_RESTORE))
 						Case "disable"
-							$output_text = WinSetState($window_handle, "", @SW_DISABLE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_DISABLE))
 						Case "enable"
-							$output_text = WinSetState($window_handle, "", @SW_ENABLE)
+							$output_text = ProcessReturnValue(WinSetState($window_handle, "", @SW_ENABLE))
 						Case "set on top"
-							$output_text = WinSetOnTop($window_handle, "", 1)
+							$output_text = ProcessReturnValue(WinSetOnTop($window_handle, "", 1))
 						Case "set not on top"
-							$output_text = WinSetOnTop($window_handle, "", 0)
+							$output_text = ProcessReturnValue(WinSetOnTop($window_handle, "", 0))
 						Case "set transparency"
-							$output_text = WinSetTrans($window_handle, "", $trans)
+							$output_text = ProcessReturnValue(WinSetTrans($window_handle, "", $trans))
 						Case "set title"
-							$output_text = WinSetTitle($window_handle, "", $new_title)
+							$output_text = ProcessReturnValue(WinSetTitle($window_handle, "", $new_title))
 						Case "move"
 							If $resize Then
-								$output_text = WinMove($window_handle, "", $x, $y, $width, $height)
+								$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y, $width, $height))
 							Else
-								$output_text = WinMove($window_handle, "", $x, $y)
+								$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y))
 							EndIf
 						Case "get position"
 							$pos = WinGetPos($window_handle)
