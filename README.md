@@ -110,91 +110,91 @@ Enter the title or a part of the title in the *simple search input* ([1](https:/
 
 Select the desired *action* ([4](https://github.com/dodaucy/auWin#areas "Areas")).
 
-#### display
+#### Display
 
 Just lists all windows found. This can be used to test whether the desired windows are found.
 
-#### flash
+#### Flash
 
 Flashes the selected windows until this window is selected.
 
 ![flash](assets/introduction/actions/flash.png)
 
-#### close
+#### Send close signal
 
 Sends a close signal to the selected windows. Some windows may ask for confirmation. **Whether this signal is processed is entirely up to the program! The program could still continue!**
 
 ![close](assets/introduction/actions/close.png)
 
-#### kill
+#### Send kill signal
 
 Sends a kill signal to the selected windows. **Whether this signal is processed is entirely up to the program! The program could still continue!**
 
-#### hide
+#### Hide
 
-Hides the selected windows. These continue to run in the background but are no longer visible. Can be undone with [show](https://github.com/dodaucy/auWin#show "show action").
+Hides the selected windows. These continue to run in the background but are no longer visible. Can be undone with [show](https://github.com/dodaucy/auWin#show "Show action").
 
-#### show
+#### Show
 
-Shows the selected windows that were not previously visible. Can be undone with [hide](https://github.com/dodaucy/auWin#hide "hide action").
+Shows the selected windows that were not previously visible. Can be undone with [hide](https://github.com/dodaucy/auWin#hide "Hide action").
 
-#### minimize
+#### Minimize
 
 Minimizes the selected windows.
 
-#### maximize
+#### Maximize
 
 Maximizes the selected windows.
 
-#### restore
+#### Restore
 
-Restores the selected windows. This is the third state next to maximize and minimize. The windows are visible but do not cover the entire screen.
+Restores the selected windows. This is the third state next to [minimize](https://github.com/dodaucy/auWin#minimize "Minimize action") and [maximize](https://github.com/dodaucy/auWin#maximize "Maximize action"). The windows are visible but do not cover the entire screen.
 
-#### disable
+#### Disable
 
-Disables the selected windows. This means that you can no longer interact with the windows. Can be undone with [enable](https://github.com/dodaucy/auWin#enable "enable action").
+Disables the selected windows. This means that you can no longer interact with the windows. Can be undone with [enable](https://github.com/dodaucy/auWin#enable "Enable action").
 
-#### enable
+#### Enable
 
-Enables the selected windows. After that you can interact with the windows again. Can be undone with [disable](https://github.com/dodaucy/auWin#disable "disable action").
+Enables the selected windows. After that you can interact with the windows again. Can be undone with [disable](https://github.com/dodaucy/auWin#disable "Disable action").
 
-#### set on top
+#### Set on top
 
-Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](https://github.com/dodaucy/auWin#set-not-on-top "set not on top action").
+Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](https://github.com/dodaucy/auWin#set-not-on-top "Set not on top action").
 
-#### set not on top
+#### Set not on top
 
-Ensures that other windows can again be above the selected windows. Can be undone with [set on top](https://github.com/dodaucy/auWin#set-on-top "set on top action").
+Ensures that other windows can again be above the selected windows. Can be undone with [set on top](https://github.com/dodaucy/auWin#set-on-top "Set on top action").
 
-#### set transparency
+#### Set transparency
 
 Sets the transparency of all selected windows. You can choose between the values ​`​0` (completely invisible) and `255` (completely visible). Here is an example with `100`:
 
 ![transparency 100](assets/introduction/actions/transparency_100.png)
 
-#### set title
+#### Set title
 
 Sets the title of the selected windows.
 
 ![custom title](assets/introduction/actions/custom_title.png)
 
-#### move
+#### Move
 
 Moves all windows to the given position. Windows can also be moved to a negative position. As an example Y to `-32`:
 
 ![moved to y negative 32](assets/introduction/actions/moved_to_y_negative_32.png)
 
-#### resize
+#### Resize
 
 Changes the size all selected windows.
 
-#### get position & size
+#### Display position and size
 
 Displays the position and size of all selected windows in the *display* ([8](https://github.com/dodaucy/auWin#areas "Areas")).
 
 ![get position and size](assets/introduction/actions/get_position_and_size.png)
 
-#### get text
+#### Display text
 
 Displays the text of all selected windows in the *display* ([8](https://github.com/dodaucy/auWin#areas "Areas")).
 
