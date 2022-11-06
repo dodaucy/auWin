@@ -63,7 +63,7 @@ EndFunc
 
     ; Create mode combo box
     $action_ctrl = GUICtrlCreateCombo("display", 8, 64, 97, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|get position|get text")
+    GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|resize|get position|get text")
 
     ; Create start button
     $start = GUICtrlCreateButton("START", 8, 96, 97, 41)
@@ -159,35 +159,30 @@ While 1
                 If $new_title = "" Then ContinueLoop
             EndIf
 
-            ; Ask for position and size if required
+            ; Ask for position if required
             If $action = "move" Then
                 WinSetOnTop($gui, "", 0)
-                $x = InputBox("Coordinates", "X coordinate to move to:", "0")
+                $x = InputBox("Move", "X coordinate to move to:", "0")
                 If $x = "" Then
                     WinSetOnTop($gui, "", 1)
                     ContinueLoop
                 EndIf
-                $y = InputBox("Coordinates", "Y coordinate to move to:", "0")
-                If $y = "" Then
+                $y = InputBox("Move", "Y coordinate to move to:", "0")
+                WinSetOnTop($gui, "", 1)
+                If $y = "" Then ContinueLoop
+            EndIf
+
+            ; Ask for size if required
+            If $action = "resize" Then
+                WinSetOnTop($gui, "", 0)
+                $width = InputBox("Resize", "Width:", "0")
+                If $width = "" Then
                     WinSetOnTop($gui, "", 1)
                     ContinueLoop
                 EndIf
-                If MsgBox($MB_YESNO, "Size", "Would you like to specify a size?") = $IDYES Then
-                    $width = InputBox("Size", "Width:", "0")
-                    If $width = "" Then
-                        WinSetOnTop($gui, "", 1)
-                        ContinueLoop
-                    EndIf
-                    $height = InputBox("Size", "Height:", "0")
-                    If $height = "" Then
-                        WinSetOnTop($gui, "", 1)
-                        ContinueLoop
-                    EndIf
-                    $resize = True
-                Else
-                    $resize = False
-                EndIf
+                $height = InputBox("Resize", "Height:", "0")
                 WinSetOnTop($gui, "", 1)
+                If $height = "" Then ContinueLoop
             EndIf
 
             ; Clear GUI
@@ -237,11 +232,9 @@ While 1
 						Case "set title"
 							$output_text = ProcessReturnValue(WinSetTitle($window_handle, "", $new_title))
 						Case "move"
-							If $resize Then
-								$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y, $width, $height))
-							Else
-								$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y))
-							EndIf
+							$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y))
+						Case "resize"
+                            $output_text = ProcessReturnValue(WinMove($window_handle, "", Default, Default, $width, $height))
 						Case "get position"
 							$pos = WinGetPos($window_handle)
 							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]

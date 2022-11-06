@@ -180,9 +180,13 @@ Sets the title of the selected windows.
 
 #### move
 
-Moves all windows to the given position. Afterwards, the size of the windows can optionally be set. Windows can also be moved to a negative position. As an example Y to `-32`:
+Moves all windows to the given position. Windows can also be moved to a negative position. As an example Y to `-32`:
 
 ![moved to y negative 32](assets/introduction/actions/moved_to_y_negative_32.png)
+
+#### resize
+
+Changes the size all selected windows.
 
 #### get position
 
