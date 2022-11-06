@@ -78,7 +78,7 @@ EndFunc
 
     ; Create mode combo box
     $action_ctrl = GUICtrlCreateCombo("display", 8, 64, 97, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|resize|get position & size|get text")
+    GUICtrlSetData(-1, "get PID|flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|resize|get position & size|get text")
 
     ; Create start button
     $start = GUICtrlCreateButton("START", 8, 96, 97, 41)
@@ -192,6 +192,8 @@ While 1
 					Switch $action
                         Case "display"
                             $output_text = ""
+                        Case "get PID"
+                            $output_text = $pid
 						Case "flash"
 							WinFlash($window_handle)
                             $output_text = "Flashed"
