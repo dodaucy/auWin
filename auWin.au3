@@ -26,6 +26,21 @@
 #include <MsgBoxConstants.au3>
 
 
+Func Error($msg)
+    WinSetOnTop($gui, "", 0)
+    MsgBox($MB_SYSTEMMODAL, "Error", $msg)
+    WinSetOnTop($gui, "", 1)
+EndFunc
+
+
+Func Input($title, $text, $default="")
+    WinSetOnTop($gui, "", 0)
+    $input = InputBox($title, $text, $default)
+    WinSetOnTop($gui, "", 1)
+    Return $input
+EndFunc
+
+
 Func ProcessReturnValue($value)
     If Not IsInt($value) Then
         Return "Success"
@@ -115,15 +130,11 @@ While 1
 			$handle = GUICtrlRead($handle_ctrl)
             $handle_ptr = Ptr($handle)
             If $title_class <> "" And $handle <> "" Then
-                WinSetOnTop($gui, "", 0)
-                MsgBox($MB_ICONERROR, "ERROR", "Please enter title, class, handle or nothing")
-                WinSetOnTop($gui, "", 1)
+                Error("Please enter title, class, handle or nothing")
                 ContinueLoop
             EndIf
 			If $handle <> "" And $handle_ptr = "" Then
-                WinSetOnTop($gui, "", 0)
-				MsgBox($MB_ICONERROR, "ERROR", "Invalid handle")
-				WinSetOnTop($gui, "", 1)
+				Error("Invalid handle")
 				ContinueLoop
             EndIf
 
@@ -143,47 +154,25 @@ While 1
 				EndIf
 			EndIf
 
-            ; Ask for transparency if required
-            If $action = "set transparency" Then
-                WinSetOnTop($gui, "", 0)
-                $trans = InputBox("Transparency", "Set the transparency to a value between 0 (invisible) and 255 (visible):", "255")
-                WinSetOnTop($gui, "", 1)
-                If $trans = "" Then ContinueLoop
-            EndIf
+           Switch $action
+                Case "set transparency"
+                    $trans = Input("Transparency", "Set the transparency to a value between 0 (invisible) and 255 (visible):", "255")
+                    If $trans = "" Then ContinueLoop
+                Case "set title"
+                    $new_title = Input("Title", "Set the title:")
+                    If $new_title = "" Then ContinueLoop
+                Case "move"
+                    $x = Input("Move", "X coordinate to move to:", "0")
+                    If $x = "" Then ContinueLoop
+                    $y = Input("Move", "Y coordinate to move to:", "0")
+                    If $y = "" Then ContinueLoop
+                Case "resize"
+                    $width = Input("Resize", "Width:", "0")
+                    If $width = "" Then ContinueLoop
+                    $height = Input("Resize", "Height:", "0")
+                    If $height = "" Then ContinueLoop
+            EndSwitch
 
-            ; Ask for title if required
-            If $action = "set title" Then
-                WinSetOnTop($gui, "", 0)
-                $new_title = InputBox("Title", "Set the title:")
-                WinSetOnTop($gui, "", 1)
-                If $new_title = "" Then ContinueLoop
-            EndIf
-
-            ; Ask for position if required
-            If $action = "move" Then
-                WinSetOnTop($gui, "", 0)
-                $x = InputBox("Move", "X coordinate to move to:", "0")
-                If $x = "" Then
-                    WinSetOnTop($gui, "", 1)
-                    ContinueLoop
-                EndIf
-                $y = InputBox("Move", "Y coordinate to move to:", "0")
-                WinSetOnTop($gui, "", 1)
-                If $y = "" Then ContinueLoop
-            EndIf
-
-            ; Ask for size if required
-            If $action = "resize" Then
-                WinSetOnTop($gui, "", 0)
-                $width = InputBox("Resize", "Width:", "0")
-                If $width = "" Then
-                    WinSetOnTop($gui, "", 1)
-                    ContinueLoop
-                EndIf
-                $height = InputBox("Resize", "Height:", "0")
-                WinSetOnTop($gui, "", 1)
-                If $height = "" Then ContinueLoop
-            EndIf
 
             ; Clear GUI
 			GUICtrlSetData($display, "")
