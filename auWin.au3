@@ -181,11 +181,12 @@ While 1
             ; Cycle through all found windows
             For $i = 1 To $win_list[0][0] Step 1
 
-                ; Get handle of window
+                ; Get infos from window
 			    $window_handle = $win_list[$i][1]
+                $pid = WinGetProcess($window_handle)
 
                 ; Ignore itself
-			    If $window_handle <> $gui Then
+			    If $pid <> @AutoItPID Then
 
                     ; Run command
 					Switch $action
