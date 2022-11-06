@@ -146,7 +146,7 @@ While 1
             ; Ask for transparency if required
             If $action = "set transparency" Then
                 WinSetOnTop($gui, "", 0)
-                $trans = InputBox("transparency", "Set the transparency to a value between 0 and 255", "255")
+                $trans = InputBox("Transparency", "Set the transparency to a value between 0 (invisible) and 255 (visible):", "255")
                 WinSetOnTop($gui, "", 1)
                 If $trans = "" Then ContinueLoop
             EndIf
@@ -154,7 +154,7 @@ While 1
             ; Ask for title if required
             If $action = "set title" Then
                 WinSetOnTop($gui, "", 0)
-                $new_title = InputBox("title", "Set the title")
+                $new_title = InputBox("Title", "Set the title:")
                 WinSetOnTop($gui, "", 1)
                 If $new_title = "" Then ContinueLoop
             EndIf
@@ -162,23 +162,23 @@ While 1
             ; Ask for position and size if required
             If $action = "move" Then
                 WinSetOnTop($gui, "", 0)
-                $x = InputBox("X", "X coordinate to move to", "0")
+                $x = InputBox("Coordinates", "X coordinate to move to:", "0")
                 If $x = "" Then
                     WinSetOnTop($gui, "", 1)
                     ContinueLoop
                 EndIf
-                $y = InputBox("Y", "Y coordinate to move to", "0")
+                $y = InputBox("Coordinates", "Y coordinate to move to:", "0")
                 If $y = "" Then
                     WinSetOnTop($gui, "", 1)
                     ContinueLoop
                 EndIf
-                If MsgBox($MB_YESNO, "size", "Would you like to specify a size?") = $IDYES Then
-                    $width = InputBox("width", "Width", "0")
+                If MsgBox($MB_YESNO, "Size", "Would you like to specify a size?") = $IDYES Then
+                    $width = InputBox("Size", "Width:", "0")
                     If $width = "" Then
                         WinSetOnTop($gui, "", 1)
                         ContinueLoop
                     EndIf
-                    $height = InputBox("height", "Height", "0")
+                    $height = InputBox("Size", "Height:", "0")
                     If $height = "" Then
                         WinSetOnTop($gui, "", 1)
                         ContinueLoop
