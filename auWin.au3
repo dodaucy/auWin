@@ -78,7 +78,7 @@ EndFunc
 
     ; Create mode combo box
     $action_ctrl = GUICtrlCreateCombo("display", 8, 64, 97, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|resize|get position|get text")
+    GUICtrlSetData(-1, "flash|close|kill|hide|show|minimize|maximize|restore|disable|enable|set on top|set not on top|set transparency|set title|move|resize|get position & size|get text")
 
     ; Create start button
     $start = GUICtrlCreateButton("START", 8, 96, 97, 41)
@@ -224,7 +224,7 @@ While 1
 							$output_text = ProcessReturnValue(WinMove($window_handle, "", $x, $y))
 						Case "resize"
                             $output_text = ProcessReturnValue(WinMove($window_handle, "", Default, Default, $width, $height))
-						Case "get position"
+						Case "get position & size"
 							$pos = WinGetPos($window_handle)
 							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
 						Case "get text"

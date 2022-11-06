@@ -188,11 +188,11 @@ Moves all windows to the given position. Windows can also be moved to a negative
 
 Changes the size all selected windows.
 
-#### get position
+#### get position & size
 
 Displays the position and size of all selected windows in the *display* ([8](https://github.com/dodaucy/auWin#areas "Areas")).
 
-![get position](assets/introduction/actions/get_position.png)
+![get position and size](assets/introduction/actions/get_position_and_size.png)
 
 #### get text
 
