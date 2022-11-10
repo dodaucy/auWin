@@ -29,7 +29,7 @@
 
 #Region ### Create GUI ###
 
-    $auWin = GUICreate("auWin", 522, 490)
+    $auWin = GUICreate("auWin", 522, 522)
     WinSetOnTop($auWin, "", 1)
 
     $group_search_for_windows = GUICtrlCreateGroup("Search for windows", 8, 8, 505, 113)
@@ -98,8 +98,15 @@
 
     $edit_display = GUICtrlCreateEdit("", 8, 280, 505, 169, BitOR($GUI_SS_DEFAULT_EDIT, $ES_READONLY))
 
-    $button_introduction = GUICtrlCreateButton("Help / Introduction", 8, 456, 249, 25)
-    $button_issue = GUICtrlCreateButton("Give feedback / Report bugs / Ask a question", 264, 456, 249, 25)
+    $checkbox_self_protect = GUICtrlCreateCheckbox("Exclude own process (PID " & @AutoItPID & ")", 8, 456, 249, 25)
+    GUICtrlSetState(-1, $GUI_CHECKED)
+    $handle_checkbox_self_protect = GUICtrlGetHandle($checkbox_self_protect)
+    $checkbox_set_self_on_top = GUICtrlCreateCheckbox("Set self on top", 264, 456, 249, 25)
+    GUICtrlSetState(-1, $GUI_CHECKED)
+    $handle_checkbox_set_self_on_top = GUICtrlGetHandle($checkbox_set_self_on_top)
+
+    $button_introduction = GUICtrlCreateButton("Help / Introduction", 8, 488, 249, 25)
+    $button_issue = GUICtrlCreateButton("Give feedback / Report bugs / Ask a question", 264, 488, 249, 25)
 
     GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
     GUIRegisterMsg($WM_HSCROLL, "WM_HSCROLL")
@@ -107,6 +114,8 @@
 
 #EndRegion
 
+
+Global $self_protect = True
 
 Global $over_two_fields = False
 Global $invalid_handle = False
@@ -219,6 +228,14 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
                         GUICtrlSetState($input_height, $GUI_SHOW)
                 EndSwitch
             EndIf
+        Case $handle_checkbox_self_protect
+            If $notify_code = $BN_CLICKED Then
+                $self_protect = GUICtrlRead($checkbox_self_protect) == 1
+            EndIf
+        Case $handle_checkbox_set_self_on_top
+            If $notify_code = $BN_CLICKED Then
+                WinSetOnTop($auWin, "", GUICtrlRead($checkbox_set_self_on_top))
+            EndIf
     EndSwitch
 EndFunc
 
@@ -308,7 +325,7 @@ While 1
                 $pid = WinGetProcess($handle)
 
                 ; Ignore itself
-			    If $pid <> @AutoItPID Then
+			    If Not $self_protect Or $pid <> @AutoItPID Then
 
                     ; Run command
 					Switch $action
