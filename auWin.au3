@@ -55,7 +55,7 @@
     $group_action = GUICtrlCreateGroup("Action", 8, 128, 505, 105)
 
     $combo_action = GUICtrlCreateCombo("Display", 24, 152, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "get PID|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
+    GUICtrlSetData(-1, "Display handle|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 184, 147, 33)
@@ -314,8 +314,8 @@ While 1
 					Switch $action
                         Case "Display"
                             $output_text = ""
-                        Case "get PID"
-                            $output_text = $pid
+                        Case "Display handle"
+                            $output_text = $handle
 						Case "Flash"
 							WinFlash($handle)
                             $output_text = "Flashed"
@@ -363,7 +363,7 @@ While 1
                     If $output_text <> "" Then
                         $output_text = " " & $output_text
                     EndIf
-					GUICtrlSetData($edit_display, "[" & $handle & "] (" & $win_list[$i][0] & ")" & $output_text & @CRLF & GUICtrlRead($edit_display))
+					GUICtrlSetData($edit_display, "[" & $win_list[$i][0] & "] (PID: " & $pid & ")" & $output_text & @CRLF & GUICtrlRead($edit_display))
 
 				EndIf
 
