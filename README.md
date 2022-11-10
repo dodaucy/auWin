@@ -38,25 +38,13 @@ The executable could be detected as malware. More information [here](https://www
 
 ## Supported operating systems
 
-- Windows XP SP3
+- Windows XP and Windows Server 2003
 
-- Windows 2003 SP2
+- Windows Vista and Windows Server 2008/2008 R2
 
-- Windows Vista
+- Windows 7 / 8 / 10 / 11
 
-- Windows 2008
-
-- Windows 7
-
-- Windows 2008 R2
-
-- Windows 8
-
-- Windows 2012 R2
-
-- Windows 10
-
-- Windows 11
+Stand november 2022 - From the [AutoIt Downloads Overview](https://www.autoitscript.com/site/autoit/downloads/ "Downloads from autoitscript.com")
 
 ## Introduction
 
