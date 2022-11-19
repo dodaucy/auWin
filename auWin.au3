@@ -240,6 +240,22 @@ While 1
             ShellExecute("https://github.com/dodaucy/auWin/issues/new")
 
 		Case $button_start
+            ; Disable elements
+            GUICtrlSetState($input_search, $GUI_DISABLE)
+            GUICtrlSetState($combo_search_by, $GUI_DISABLE)
+            GUICtrlSetState($combo_action, $GUI_DISABLE)
+            GUICtrlSetState($button_start, $GUI_DISABLE)
+            GUICtrlSetState($input_x, $GUI_DISABLE)
+            GUICtrlSetState($input_y, $GUI_DISABLE)
+            GUICtrlSetState($input_width, $GUI_DISABLE)
+            GUICtrlSetState($input_height, $GUI_DISABLE)
+            GUICtrlSetState($input_one_line, $GUI_DISABLE)
+            GUICtrlSetState($slider_trans, $GUI_DISABLE)
+            GUICtrlSetState($checkbox_self_protect, $GUI_DISABLE)
+            GUICtrlSetState($checkbox_set_self_on_top, $GUI_DISABLE)
+            GUICtrlSetState($button_introduction, $GUI_DISABLE)
+            GUICtrlSetState($button_issue, $GUI_DISABLE)
+
             ; Clear GUI
 			GUICtrlSetData($edit_display, "")
 			GUICtrlSetData($progress, 0)
@@ -369,6 +385,22 @@ While 1
 
             ; Set progress bar to 100% in case it wasn't already
 			GUICtrlSetData($progress, 100)
+
+            ; Enable elements
+            GUICtrlSetState($input_search, $GUI_ENABLE)
+            GUICtrlSetState($combo_search_by, $GUI_ENABLE)
+            GUICtrlSetState($combo_action, $GUI_ENABLE)
+            GUICtrlSetState($button_start, $GUI_ENABLE)
+            GUICtrlSetState($input_x, $GUI_ENABLE)
+            GUICtrlSetState($input_y, $GUI_ENABLE)
+            GUICtrlSetState($input_width, $GUI_ENABLE)
+            GUICtrlSetState($input_height, $GUI_ENABLE)
+            GUICtrlSetState($input_one_line, $GUI_ENABLE)
+            GUICtrlSetState($slider_trans, $GUI_ENABLE)
+            GUICtrlSetState($checkbox_self_protect, $GUI_ENABLE)
+            GUICtrlSetState($checkbox_set_self_on_top, $GUI_ENABLE)
+            GUICtrlSetState($button_introduction, $GUI_ENABLE)
+            GUICtrlSetState($button_issue, $GUI_ENABLE)
 
 	EndSwitch
 
