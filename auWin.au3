@@ -29,84 +29,73 @@
 
 #Region ### Create GUI ###
 
-    $auWin = GUICreate("auWin", 522, 522)
+    $auWin = GUICreate("auWin", 522, 474)
     WinSetOnTop($auWin, "", 1)
 
-    $group_search_for_windows = GUICtrlCreateGroup("Search for windows", 8, 8, 505, 113)
+    $group_search_for_windows = GUICtrlCreateGroup("Search for windows", 8, 8, 505, 65)
 
-    $label_title_class = GUICtrlCreateLabel("Title / Class (optional):", 16, 34, 127, 17)
-    $input_title_class = GUICtrlCreateInput("", 144, 32, 193, 21)
-    $handle_input_title_class = GUICtrlGetHandle($input_title_class)
-    $label_window_handle = GUICtrlCreateLabel("Window handle (optional):", 16, 66, 127, 17)
-    $input_window_handle = GUICtrlCreateInput("", 144, 64, 193, 21)
-    $handle_input_window_handle = GUICtrlGetHandle($input_window_handle)
+    $input_search = GUICtrlCreateInput("", 24, 32, 193, 21)
+    $handle_input_search = GUICtrlGetHandle($input_search)
 
-    $label_fields_info = GUICtrlCreateLabel("Please fill out a maximum of one field!", 16, 98, 323, 17, $SS_CENTER)
+    $combo_search_by = GUICtrlCreateCombo("Title (Match the title from the start)", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at `Display`)")
+    $handle_combo_search_by = GUICtrlGetHandle($combo_search_by)
 
-    $radio_win_title_match_mode_1 = GUICtrlCreateRadio("Match the title from the start", 344, 23, 161, 17)
-    GUICtrlSetState(-1, BitOR($GUI_CHECKED, $GUI_DISABLE))
-    $radio_win_title_match_mode_2 = GUICtrlCreateRadio("Match any substring in the title", 344, 47, 161, 17)
-    GUICtrlSetState(-1, $GUI_DISABLE)
-    $radio_win_title_match_mode_3 = GUICtrlCreateRadio("Exact title match", 344, 71, 161, 17)
-    GUICtrlSetState(-1, $GUI_DISABLE)
-    $radio_win_title_match_mode_4 = GUICtrlCreateRadio("Advanced mode", 344, 95, 161, 17)
-    GUICtrlSetState(-1, $GUI_DISABLE)
+    $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
-    $group_action = GUICtrlCreateGroup("Action", 8, 128, 505, 105)
-
-    $combo_action = GUICtrlCreateCombo("Display", 24, 152, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+    $combo_action = GUICtrlCreateCombo("Display", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
     GUICtrlSetData(-1, "Display handle|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
-    $button_start = GUICtrlCreateButton("Start", 24, 184, 147, 33)
+    $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
 
-    $label_more_infos = GUICtrlCreateLabel("", 192, 154, 299, 17, $SS_CENTER)
-    GUICtrlSetState(-1, $GUI_HIDE)
-
-    $label_x = GUICtrlCreateLabel("X:", 184, 186, 52, 17, $SS_CENTER)
-    GUICtrlSetState(-1, $GUI_HIDE)
-    $input_x = GUICtrlCreateInput("0", 240, 184, 89, 21)
-    GUICtrlSetState(-1, $GUI_HIDE)
-    $label_y = GUICtrlCreateLabel("Y:", 352, 186, 53, 17, $SS_CENTER)
-    GUICtrlSetState(-1, $GUI_HIDE)
-    $input_y = GUICtrlCreateInput("0", 408, 184, 89, 21)
+    $label_more_infos = GUICtrlCreateLabel("", 192, 106, 299, 17, $SS_CENTER)
     GUICtrlSetState(-1, $GUI_HIDE)
 
-    $label_width = GUICtrlCreateLabel("Width:", 184, 186, 52, 17, $SS_CENTER)
+    $label_x = GUICtrlCreateLabel("X:", 184, 138, 52, 17, $SS_CENTER)
     GUICtrlSetState(-1, $GUI_HIDE)
-    $input_width = GUICtrlCreateInput("0", 240, 184, 89, 21)
+    $input_x = GUICtrlCreateInput("0", 240, 136, 89, 21)
     GUICtrlSetState(-1, $GUI_HIDE)
-    $label_height = GUICtrlCreateLabel("Height:", 352, 186, 53, 17, $SS_CENTER)
+    $label_y = GUICtrlCreateLabel("Y:", 352, 138, 53, 17, $SS_CENTER)
     GUICtrlSetState(-1, $GUI_HIDE)
-    $input_height = GUICtrlCreateInput("0", 408, 184, 89, 21)
-    GUICtrlSetState(-1, $GUI_HIDE)
-
-    $input_one_line = GUICtrlCreateInput("", 184, 184, 313, 21)
+    $input_y = GUICtrlCreateInput("0", 408, 136, 89, 21)
     GUICtrlSetState(-1, $GUI_HIDE)
 
-    $label_invisible = GUICtrlCreateLabel("Invisible", 184, 186, 50, 17, $SS_CENTER)
+    $label_width = GUICtrlCreateLabel("Width:", 184, 138, 52, 17, $SS_CENTER)
     GUICtrlSetState(-1, $GUI_HIDE)
-    $label_visible = GUICtrlCreateLabel("Visible", 448, 186, 50, 17, $SS_CENTER)
+    $input_width = GUICtrlCreateInput("0", 240, 136, 89, 21)
     GUICtrlSetState(-1, $GUI_HIDE)
-    $slider_trans = GUICtrlCreateSlider(240, 184, 206, 37)
+    $label_height = GUICtrlCreateLabel("Height:", 352, 138, 53, 17, $SS_CENTER)
+    GUICtrlSetState(-1, $GUI_HIDE)
+    $input_height = GUICtrlCreateInput("0", 408, 136, 89, 21)
+    GUICtrlSetState(-1, $GUI_HIDE)
+
+    $input_one_line = GUICtrlCreateInput("", 184, 136, 313, 21)
+    GUICtrlSetState(-1, $GUI_HIDE)
+
+    $label_invisible = GUICtrlCreateLabel("Invisible", 184, 138, 50, 17, $SS_CENTER)
+    GUICtrlSetState(-1, $GUI_HIDE)
+    $label_visible = GUICtrlCreateLabel("Visible", 448, 138, 50, 17, $SS_CENTER)
+    GUICtrlSetState(-1, $GUI_HIDE)
+    $slider_trans = GUICtrlCreateSlider(240, 136, 206, 37)
     GUICtrlSetLimit(-1, 255, 0)
     GUICtrlSetData(-1, 255)
     GUICtrlSetState(-1, $GUI_HIDE)
     $handle_slider_trans = GUICtrlGetHandle($slider_trans)
 
-    $progress = GUICtrlCreateProgress(8, 240, 505, 33)
+    $progress = GUICtrlCreateProgress(8, 192, 505, 33)
 
-    $edit_display = GUICtrlCreateEdit("", 8, 280, 505, 169, BitOR($GUI_SS_DEFAULT_EDIT, $ES_READONLY))
+    $edit_display = GUICtrlCreateEdit("", 8, 232, 505, 169, BitOR($GUI_SS_DEFAULT_EDIT, $ES_READONLY))
 
-    $checkbox_self_protect = GUICtrlCreateCheckbox("Exclude own process (PID " & @AutoItPID & ")", 8, 456, 249, 25)
+    $checkbox_self_protect = GUICtrlCreateCheckbox("Exclude own process (PID " & @AutoItPID & ")", 13, 408, 239, 25)
     GUICtrlSetState(-1, $GUI_CHECKED)
     $handle_checkbox_self_protect = GUICtrlGetHandle($checkbox_self_protect)
-    $checkbox_set_self_on_top = GUICtrlCreateCheckbox("Set self on top", 264, 456, 249, 25)
+    $checkbox_set_self_on_top = GUICtrlCreateCheckbox("Set self on top", 269, 408, 239, 25)
     GUICtrlSetState(-1, $GUI_CHECKED)
     $handle_checkbox_set_self_on_top = GUICtrlGetHandle($checkbox_set_self_on_top)
 
-    $button_introduction = GUICtrlCreateButton("Help / Introduction", 8, 488, 249, 25)
-    $button_issue = GUICtrlCreateButton("Give feedback / Report bugs / Ask a question", 264, 488, 249, 25)
+    $button_introduction = GUICtrlCreateButton("Help / Introduction", 8, 440, 249, 25)
+    $button_issue = GUICtrlCreateButton("Give feedback / Report bugs / Ask a question", 264, 440, 249, 25)
 
     GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
     GUIRegisterMsg($WM_HSCROLL, "WM_HSCROLL")
@@ -116,9 +105,6 @@
 
 
 Global $self_protect = True
-
-Global $over_two_fields = False
-Global $invalid_handle = False
 
 
 Func ProcessReturnValue($value)
@@ -133,10 +119,18 @@ Func ProcessReturnValue($value)
 EndFunc
 
 
-Func UpdateStartButton()
-    If $over_two_fields Or $invalid_handle Then
-        GUICtrlSetState($button_start, $GUI_DISABLE)
+Func CheckPtr()
+    If GUICtrlRead($combo_search_by) = "HWND / Window Handle (Get with 'Display handle')" Then
+        $search = GUICtrlRead($input_search)
+        If $search <> "" And Ptr($search) = 0 Then
+            GUICtrlSetColor($input_search, 0xFF0000)
+            GUICtrlSetState($button_start, $GUI_DISABLE)
+        Else
+            GUICtrlSetColor($input_search, 0x000000)
+            GUICtrlSetState($button_start, $GUI_ENABLE)
+        EndIf
     Else
+        GUICtrlSetColor($input_search, 0x000000)
         GUICtrlSetState($button_start, $GUI_ENABLE)
     EndIf
 EndFunc
@@ -151,40 +145,9 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
     $notify_code = _WinAPI_HiWord($wParam)
     $ctrl_id = _WinAPI_LoWord($wParam)
     Switch $lParam
-        Case $handle_input_title_class, $handle_input_window_handle
+        Case $handle_input_search
             If $notify_code = $EN_CHANGE Then
-                $title_class_data = GUICtrlRead($input_title_class)
-                $window_handle_data = GUICtrlRead($input_window_handle)
-                Switch $lParam
-                    Case $handle_input_title_class
-                        If $title_class_data == "" Then
-                            GUICtrlSetState($radio_win_title_match_mode_1, $GUI_DISABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_2, $GUI_DISABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_3, $GUI_DISABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_4, $GUI_DISABLE)
-                        Else
-                            GUICtrlSetState($radio_win_title_match_mode_1, $GUI_ENABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_2, $GUI_ENABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_3, $GUI_ENABLE)
-                            GUICtrlSetState($radio_win_title_match_mode_4, $GUI_ENABLE)
-                        EndIf
-                    Case $handle_input_window_handle
-                        If $window_handle_data <> "" And Ptr($window_handle_data) = 0 Then
-                            GUICtrlSetColor($input_window_handle, 0xFF0000)
-                            $invalid_handle = True
-                        Else
-                            GUICtrlSetColor($input_window_handle, 0x000000)
-                            $invalid_handle = False
-                        EndIf
-                EndSwitch
-                If $title_class_data <> "" And $window_handle_data <> "" Then
-                    $over_two_fields = True
-                    GUICtrlSetColor($label_fields_info, 0xFF0000)
-                Else
-                    $over_two_fields = False
-                    GUICtrlSetColor($label_fields_info, 0x000000)
-                EndIf
-                UpdateStartButton()
+                CheckPtr()
             EndIf
         Case $handle_combo_action
             If $notify_code = $CBN_SELCHANGE Then
@@ -228,6 +191,8 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
                         GUICtrlSetState($input_height, $GUI_SHOW)
                 EndSwitch
             EndIf
+        Case $handle_combo_search_by
+            CheckPtr()
         Case $handle_checkbox_self_protect
             If $notify_code = $BN_CLICKED Then
                 $self_protect = GUICtrlRead($checkbox_self_protect) == 1
@@ -265,43 +230,46 @@ While 1
             ShellExecute("https://github.com/dodaucy/auWin/issues/new")
 
 		Case $button_start
-            ; Set window title match mode
-            Switch 1
-                Case GUICtrlRead($radio_win_title_match_mode_1)
-                    AutoItSetOption("WinTitleMatchMode", 1)
-                Case GUICtrlRead($radio_win_title_match_mode_2)
-                    AutoItSetOption("WinTitleMatchMode", 2)
-                Case GUICtrlRead($radio_win_title_match_mode_3)
-                    AutoItSetOption("WinTitleMatchMode", 3)
-                Case GUICtrlRead($radio_win_title_match_mode_4)
-                    AutoItSetOption("WinTitleMatchMode", 4)
-            EndSwitch
-
             ; Clear GUI
 			GUICtrlSetData($edit_display, "")
 			GUICtrlSetData($progress, 0)
 
+            ; Set search mode
+            $HWND_search_mode = False
+            $PID_search_mode = False
+            Switch GUICtrlRead($combo_search_by)
+                Case "Title (Match the title from the start)"
+                    AutoItSetOption("WinTitleMatchMode", 1)
+                Case "Title (Match any substring in the title)"
+                    AutoItSetOption("WinTitleMatchMode", 2)
+                Case "Title (Exact title match)"
+                    AutoItSetOption("WinTitleMatchMode", 3)
+                Case "HWND / Window Handle (Get with 'Display handle')"
+                    $HWND_search_mode = True
+                Case "PID / Process ID (In the brackets at `Display`)"
+                    $PID_search_mode = True
+            EndSwitch
+
             ; Read input fields
+            $search = GUICtrlRead($input_search)
             $action = GUICtrlRead($combo_action)
-			$title_class = GUICtrlRead($input_title_class)
-			$window_handle = GUICtrlRead($input_window_handle)
 
             ; Get window list
-			If $title_class == "" And $window_handle == "" Then
+			If $search == "" Or $PID_search_mode Then
                 ; Get all windows
                 $win_list = WinList()
-			ElseIf $title_class <> "" Then
-                ; Get windows with title / class
-                $win_list = WinList($title_class)
-			ElseIf $window_handle <> "" Then
-                ; Get window with window handle
-                $handle_ptr = Ptr($window_handle)
-				If WinExists($handle_ptr) Then
+            ElseIf $HWND_search_mode Then
+                ; Get window by window handle
+                $handle_ptr = Ptr($search)
+                If WinExists($handle_ptr) Then
                     Local $win_list[2][2] = [[1, ""], [WinGetTitle($handle_ptr), $handle_ptr]]
 				Else
 					Local $win_list[1][2] = [[0, ""]]
 				EndIf
-			EndIf
+            Else
+                ; Get window by title
+                $win_list = WinList($search)
+            EndIf
 
             ; Read more infos
             Switch GUICtrlRead($combo_action)
@@ -324,8 +292,8 @@ While 1
 			    $handle = $win_list[$i][1]
                 $pid = WinGetProcess($handle)
 
-                ; Ignore itself
-			    If Not $self_protect Or $pid <> @AutoItPID Then
+                ; Filter windows
+			    If (Not $self_protect Or $pid <> @AutoItPID) And ($search == "" Or Not $PID_search_mode Or $pid == $search) Then
 
                     ; Run command
 					Switch $action
