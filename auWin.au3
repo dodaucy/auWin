@@ -120,9 +120,19 @@ EndFunc
 
 
 Func CheckPtr()
-    If GUICtrlRead($combo_search_by) = "HWND / Window Handle (Get with 'Display handle')" Then
-        $search = GUICtrlRead($input_search)
-        If $search <> "" And Ptr($search) = 0 Then
+    $combo_data = GUICtrlRead($combo_search_by)
+    If $combo_data = "HWND / Window Handle (Get with 'Display handle')" Then
+        $search_data = GUICtrlRead($input_search)
+        If $search_data <> "" And Not Ptr($search_data) Then
+            GUICtrlSetColor($input_search, 0xFF0000)
+            GUICtrlSetState($button_start, $GUI_DISABLE)
+        Else
+            GUICtrlSetColor($input_search, 0x000000)
+            GUICtrlSetState($button_start, $GUI_ENABLE)
+        EndIf
+    ElseIf $combo_data = "PID / Process ID (In the brackets at `Display`)" Then
+        $search_data = GUICtrlRead($input_search)
+        If $search_data <> "" And Not StringIsInt($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
             GUICtrlSetState($button_start, $GUI_DISABLE)
         Else
