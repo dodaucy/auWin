@@ -237,7 +237,7 @@ While 1
 
         Case $button_issue
             ; Open a new issue
-            ShellExecute("https://github.com/dodaucy/auWin/issues/new")
+            ShellExecute("https://github.com/dodaucy/auWin/issues/new/choose")
 
 		Case $button_start
             ; Disable elements
