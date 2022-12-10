@@ -38,7 +38,7 @@
     $handle_input_search = GUICtrlGetHandle($input_search)
 
     $combo_search_by = GUICtrlCreateCombo("Title (Match the title from the start)", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at `Display`)")
+    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at `Display`)|All windows")
     $handle_combo_search_by = GUICtrlGetHandle($combo_search_by)
 
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
@@ -119,7 +119,7 @@ Func ProcessReturnValue($value)
 EndFunc
 
 
-Func CheckPtr()
+Func SearchCheck()
     $combo_data = GUICtrlRead($combo_search_by)
     If $combo_data = "HWND / Window Handle (Get with 'Display handle')" Then
         $search_data = GUICtrlRead($input_search)
@@ -130,6 +130,7 @@ Func CheckPtr()
             GUICtrlSetColor($input_search, 0x000000)
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
+        GUICtrlSetState($input_search, $GUI_ENABLE)
     ElseIf $combo_data = "PID / Process ID (In the brackets at `Display`)" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not StringIsInt($search_data) Then
@@ -139,9 +140,15 @@ Func CheckPtr()
             GUICtrlSetColor($input_search, 0x000000)
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
+        GUICtrlSetState($input_search, $GUI_ENABLE)
+    ElseIf $combo_data = "All windows" Then
+        GUICtrlSetColor($input_search, 0x000000)
+        GUICtrlSetState($button_start, $GUI_ENABLE)
+        GUICtrlSetState($input_search, $GUI_DISABLE)
     Else
         GUICtrlSetColor($input_search, 0x000000)
         GUICtrlSetState($button_start, $GUI_ENABLE)
+        GUICtrlSetState($input_search, $GUI_ENABLE)
     EndIf
 EndFunc
 
@@ -157,7 +164,7 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
     Switch $lParam
         Case $handle_input_search
             If $notify_code = $EN_CHANGE Then
-                CheckPtr()
+                SearchCheck()
             EndIf
         Case $handle_combo_action
             If $notify_code = $CBN_SELCHANGE Then
@@ -202,7 +209,7 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
                 EndSwitch
             EndIf
         Case $handle_combo_search_by
-            CheckPtr()
+            SearchCheck()
         Case $handle_checkbox_self_protect
             If $notify_code = $BN_CLICKED Then
                 $self_protect = GUICtrlRead($checkbox_self_protect) == 1
@@ -263,6 +270,7 @@ While 1
             ; Set search mode
             $HWND_search_mode = False
             $PID_search_mode = False
+            $all_search_mode = False
             Switch GUICtrlRead($combo_search_by)
                 Case "Title (Match the title from the start)"
                     AutoItSetOption("WinTitleMatchMode", 1)
@@ -274,6 +282,8 @@ While 1
                     $HWND_search_mode = True
                 Case "PID / Process ID (In the brackets at `Display`)"
                     $PID_search_mode = True
+                Case "All windows"
+                    $all_search_mode = True
             EndSwitch
 
             ; Read input fields
@@ -281,7 +291,7 @@ While 1
             $action = GUICtrlRead($combo_action)
 
             ; Get window list
-			If $search == "" Or $PID_search_mode Then
+			If $all_search_mode Or $PID_search_mode Then
                 ; Get all windows
                 $win_list = WinList()
             ElseIf $HWND_search_mode Then
@@ -319,7 +329,7 @@ While 1
                 $pid = WinGetProcess($handle)
 
                 ; Filter windows
-			    If (Not $self_protect Or $pid <> @AutoItPID) And ($search == "" Or Not $PID_search_mode Or $pid == $search) Then
+			    If (Not $self_protect Or $pid <> @AutoItPID) And ($all_search_mode Or Not $PID_search_mode Or $pid == $search) Then
 
                     ; Run command
 					Switch $action
@@ -387,7 +397,9 @@ While 1
 			GUICtrlSetData($progress, 100)
 
             ; Enable elements
-            GUICtrlSetState($input_search, $GUI_ENABLE)
+            If Not $all_search_mode Then
+                GUICtrlSetState($input_search, $GUI_ENABLE)
+            EndIf
             GUICtrlSetState($combo_search_by, $GUI_ENABLE)
             GUICtrlSetState($combo_action, $GUI_ENABLE)
             GUICtrlSetState($button_start, $GUI_ENABLE)
