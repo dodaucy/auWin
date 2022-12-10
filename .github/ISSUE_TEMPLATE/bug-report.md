@@ -14,7 +14,7 @@ A clear and concise description of what the bug is.
 A clear and concise description of what you expected to happen.
 
 **auWin Version**
-The version of auWin. Can be found in the file details of the executable or behind `#AutoIt3Wrapper_Res_ProductVersion=` in the source code. For example `1.0.0`.
+The version of auWin. Can be found in the file details of the executable, behind `#AutoIt3Wrapper_Res_ProductVersion=` in the source code or with version 1.1.0 or higher in the title. For example `1.0.0`.
 
 **Platform**
 Which operating system you use. For example `Windows 10 Home`.
