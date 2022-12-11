@@ -31,7 +31,7 @@
     $auWin = GUICreate("auWin", 522, 474)
     WinSetOnTop($auWin, "", 1)
 
-    $group_search_for_windows = GUICtrlCreateGroup("Search for windows", 8, 8, 505, 65)
+    $group_search_for_windows = GUICtrlCreateGroup("Select windows", 8, 8, 505, 65)
 
     $input_search = GUICtrlCreateInput("", 24, 32, 193, 21)
     $handle_input_search = GUICtrlGetHandle($input_search)
