@@ -10,7 +10,7 @@
 
 #AutoIt3Wrapper_Res_ProductName=auWin
 #AutoIt3Wrapper_Res_Description=auWin is a program with which you can easily change attributes of windows and do other things with windows.
-#AutoIt3Wrapper_Res_ProductVersion=1.0.0
+#AutoIt3Wrapper_Res_ProductVersion=1.1.0
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright (C) 2022 dodaucy
 #AutoIt3Wrapper_Compression=0
 #AutoIt3Wrapper_UseUpx=N
@@ -28,7 +28,7 @@
 
 #Region ### Create GUI ###
 
-    $auWin = GUICreate("auWin", 522, 474)
+    $auWin = GUICreate("auWin (1.1.0)", 522, 474)
     WinSetOnTop($auWin, "", 1)
 
     $group_search_for_windows = GUICtrlCreateGroup("Select windows", 8, 8, 505, 65)
@@ -130,7 +130,7 @@ Func SearchCheck()
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
         GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $combo_data = "PID / Process ID (In the brackets at 'Display')" Then
+    ElseIf $combo_data = "PID / Process ID (In the brackets at `Display`)" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not StringIsInt($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
@@ -279,7 +279,7 @@ While 1
                     AutoItSetOption("WinTitleMatchMode", 3)
                 Case "HWND / Window Handle (Get with 'Display handle')"
                     $HWND_search_mode = True
-                Case "PID / Process ID (In the brackets at 'Display')"
+                Case "PID / Process ID (In the brackets at `Display`)"
                     $PID_search_mode = True
                 Case "All windows"
                     $all_search_mode = True
