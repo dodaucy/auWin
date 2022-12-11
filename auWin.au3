@@ -130,7 +130,7 @@ Func SearchCheck()
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
         GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $combo_data = "PID / Process ID (In the brackets at `Display`)" Then
+    ElseIf $combo_data = "PID / Process ID (In the brackets at 'Display')" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not StringIsInt($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
@@ -279,7 +279,7 @@ While 1
                     AutoItSetOption("WinTitleMatchMode", 3)
                 Case "HWND / Window Handle (Get with 'Display handle')"
                     $HWND_search_mode = True
-                Case "PID / Process ID (In the brackets at `Display`)"
+                Case "PID / Process ID (In the brackets at 'Display')"
                     $PID_search_mode = True
                 Case "All windows"
                     $all_search_mode = True
