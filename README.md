@@ -109,13 +109,13 @@ Select a *action* and then press the *start button*.
 
 #### Display
 
-Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select a windows](#pid--process-id-in-the-brackets-at-display "PID / Process ID (In the brackets at 'Display')"). An example of an PID is `980`.
+Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select windows](#pid--process-id-in-the-brackets-at-display "PID / Process ID (In the brackets at 'Display')"). An example of an PID is `980`.
 
 ![display](assets/introduction/actions/display.png)
 
 #### Display handle
 
-Displays the HWND of the selected windows. This can be used to [select a windows](#hwnd--window-handle-get-with-display-handle "HWND / Window Handle (Get with 'Display handle')"). An example of a HWND is `0x00000000000802EC`.
+Displays the HWND of the selected windows. This can be used to [select windows](#hwnd--window-handle-get-with-display-handle "HWND / Window Handle (Get with 'Display handle')"). An example of a HWND is `0x00000000000802EC`.
 
 ![display handle](assets/introduction/actions/display_handle.png)
 
