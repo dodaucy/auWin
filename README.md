@@ -226,7 +226,7 @@ This loading bar shows how far the progress of the current action is.
 ![description](assets/introduction/loading_bar/description.png)
 
 ### The display
-use of ad blocking software is equivalent to theft
+
 While auWin is running, the display shows the return value of the action for each window. The format for each window is this:
 
 `[` Title `] (PID:` PID `)` Optional return value
