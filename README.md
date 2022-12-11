@@ -1,16 +1,16 @@
 # auWin
 
-auWin is a program with which you can easily change attributes of windows and do other things with windows. An introduction is [here](https://github.com/dodaucy/auWin#introduction "Introduction").
+auWin is a program with which you can easily change attributes of windows and do other things with windows. An introduction is [here](#introduction "Introduction").
 
 ## Preview
 
-![basic](assets/basic.png)
+![basic](assets/preview/basic.png)
 
-![on run](assets/on_run.png)
+![in action](assets/preview/in_action.png)
 
 ## Run
 
-Run `auWin.au3` with [AutoIt 3](https://www.autoitscript.com/files/autoit3/autoit-v3-setup.zip "Download from autoitscript.com") or download the standalone executable from [the last release](https://github.com/dodaucy/auWin/releases/latest "Last release").
+Download the standalone executable (`auWin.exe`) from [the last release](https://github.com/dodaucy/auWin/releases/latest "Last release") or run `auWin.au3` with [AutoIt 3](https://www.autoitscript.com/files/autoit3/autoit-v3-setup.zip "Download from autoitscript.com").
 
 ## Compile yourself
 
@@ -24,17 +24,19 @@ Run `auWin.au3` with [AutoIt 3](https://www.autoitscript.com/files/autoit3/autoi
 
 1. Right click `auWin.au3` and click on `Compile with Options`. The specified settings for the AutoIt3Wrapper are not loaded using the other options.
 
-![compile_with_options](assets/compile_with_options.png)
+![compile_with_options](assets/compile/compile_with_options.png)
 
 2. Now just click on `Compile Script`.
 
-![compile_script](assets/compile_script.png)
+![compile_script](assets/compile/compile_script.png)
 
 3. There is now an executable in the same folder as the `auWin.au3` file.
 
+![compiled](assets/compile/compiled.png)
+
 ### Note
 
-The executable could be detected as malware. More information [here](https://www.autoitscript.com/forum/topic/34658-are-my-autoit-exes-really-infected/ "Forum post from autoitscript.com").
+⚠️ The executable could be detected as malware. More information [here](https://www.autoitscript.com/forum/topic/34658-are-my-autoit-exes-really-infected/ "Forum post from autoitscript.com").
 
 ## Supported operating systems
 
@@ -48,59 +50,74 @@ Stand november 2022 - From the [AutoIt Downloads Overview](https://www.autoitscr
 
 ## Introduction
 
-### Areas
+### Select windows
 
-![areas](assets/introduction/areas/areas.png)
+![description](assets/introduction/basic_search/description.png)
 
-1. Simple search input
+Select a *search mode* and enter something in the *search input*. This is how you select the windows that should be affected by an action.
 
-2. Handle search input
+⚠️ This also selects system windows. So be careful what you do with those windows!
 
-3. Win Title Match Mode
+#### Title (Match the title from the start)
 
-4. Action
+In this mode, a window titled `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
 
-5. Help button
+#### Title (Match any substring in the title)
 
-6. Start button
+In this mode, a window `titled Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
 
-7. Process bar
+#### Title (Exact title match)
 
-8. Display
+In this mode, a window titled `Untitled - Notepad` will only be selected by `Untitled - Notepad`.
 
-### Basic search
+#### HWND / Window Handle (Get with 'Display handle')
 
-Enter the title or a part of the title in the *simple search input* ([1](https://github.com/dodaucy/auWin#areas "Areas")) and select the appropriate *Win Title Match Mode* ([3](https://github.com/dodaucy/auWin#areas "Areas")). **If this field is left blank, all windows will be selected. This also applies to system windows. So be careful what you do with those windows!**
+In this mode, only a specific window will be selected. Each window has its own HWND. You can get the HWND with the [Display handle](#display-handle "Display handle") action. It can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
 
-#### Examples
+#### PID / Process ID (In the brackets at 'Display')
 
-✅ Match
+In this mode, all windows from a specific process will be selected. You can get the PID with the [Display](#display "Display") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
 
-![example 1](assets/introduction/basic_search/examples/1.png)
+#### All windows
 
-❌ Doesn't match
+In this mode, all windows will be selectet. You can't enter anything in the *search input*.
 
-![example 2](assets/introduction/basic_search/examples/2.png)
+#### Advanced
 
-✅ Match
+When have selected a title mode, you can use these properties instead of a title to select windows:
 
-![example 3](assets/introduction/basic_search/examples/3.png)
+- `TITLE` - Window title
+- `CLASS` - The internal window classname
+- `REGEXPTITLE` - Window title using a regular expression
+- `REGEXPCLASS` - Window classname using a regular expression
+- `X` \ `Y` \ `W` \ `H` - The position and size of a window
+- `INSTANCE` -  The 1-based instance when all given properties match
 
-❌ Doesn't match
+One or more properties can be used in the *search input* in the format: `[PROPERTY1 : Value1; PROPERTY2:Value2]`. If a Value must contain a `;` it must be doubled.
 
-![example 4](assets/introduction/basic_search/examples/4.png)
+Here are some examples:
 
-✅ Match
-
-![example 5](assets/introduction/basic_search/examples/5.png)
+- `[CLASS:Notepad]` - All windows with the classname `Notepad`
+- `[TITLE:My Window; CLASS:My Class; INSTANCE:2]` - The 2nd instance of a window with title `My Window` and classname `My Class`
+- `[REGEXPTITLE:(?i)(.*SciTE.*|.*Internet Explorer.*)]` - All windows matching title defined by a regular expression
 
 ### Actions
 
-Select the desired *action* ([4](https://github.com/dodaucy/auWin#areas "Areas")).
+![description](assets/introduction/actions/description.png)
+
+Select a *action* and then press the *start button*.
 
 #### Display
 
-Just lists all windows found. This can be used to test whether the desired windows are found.
+Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select a windows](#pid--process-id-in-the-brackets-at-display "PID / Process ID (In the brackets at 'Display')"). An example of an PID is `980`.
+
+![display](assets/introduction/actions/display.png)
+
+#### Display handle
+
+Displays the HWND of the selected windows. This can be used to [select a windows](#hwnd--window-handle-get-with-display-handle "HWND / Window Handle (Get with 'Display handle')"). An example of a HWND is `0x00000000000802EC`.
+
+![display handle](assets/introduction/actions/display_handle.png)
 
 #### Flash
 
@@ -110,21 +127,25 @@ Flashes the selected windows until this window is selected.
 
 #### Send close signal
 
-Sends a close signal to the selected windows. Some windows may ask for confirmation. **Whether this signal is processed is entirely up to the program! The program could still continue!**
+Sends a close signal to the selected windows. Some windows may ask for confirmation.
+
+⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
 
 ![close](assets/introduction/actions/close.png)
 
 #### Send kill signal
 
-Sends a kill signal to the selected windows. **Whether this signal is processed is entirely up to the program! The program could still continue!**
+Sends a kill signal to the selected windows.
+
+⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
 
 #### Hide
 
-Hides the selected windows. These continue to run in the background but are no longer visible. Can be undone with [show](https://github.com/dodaucy/auWin#show "Show action").
+Hides the selected windows. These continue to run in the background but are no longer visible. Can be undone with [show](#show "Show").
 
 #### Show
 
-Shows the selected windows that were not previously visible. Can be undone with [hide](https://github.com/dodaucy/auWin#hide "Hide action").
+Shows the selected windows that were not previously visible. Can be undone with [hide](#hide "Hide").
 
 #### Minimize
 
@@ -136,54 +157,100 @@ Maximizes the selected windows.
 
 #### Restore
 
-Restores the selected windows. This is the third state next to [minimize](https://github.com/dodaucy/auWin#minimize "Minimize action") and [maximize](https://github.com/dodaucy/auWin#maximize "Maximize action"). The windows are visible but do not cover the entire screen.
+Restores the selected windows. This is the third state next to [minimize](#minimize "Minimize") and [maximize](#maximize "Maximize"). The windows are visible but do not cover the entire screen.
 
 #### Disable
 
-Disables the selected windows. This means that you can no longer interact with the windows. Can be undone with [enable](https://github.com/dodaucy/auWin#enable "Enable action").
+Disables the selected windows. This means that you can no longer interact with the windows. Can be undone with [enable](#enable "Enable").
 
 #### Enable
 
-Enables the selected windows. After that you can interact with the windows again. Can be undone with [disable](https://github.com/dodaucy/auWin#disable "Disable action").
+Enables the selected windows. After that you can interact with the windows again. Can be undone with [disable](#disable "Disable").
 
 #### Set on top
 
-Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](https://github.com/dodaucy/auWin#set-not-on-top "Set not on top action").
+Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](#set-not-on-top "Set not on top").
 
 #### Set not on top
 
-Ensures that other windows can again be above the selected windows. Can be undone with [set on top](https://github.com/dodaucy/auWin#set-on-top "Set on top action").
+Ensures that other windows can again be above the selected windows. Can be undone with [set on top](#set-on-top "Set on top").
 
 #### Set transparency
 
-Sets the transparency of all selected windows. You can choose between the values ​`​0` (completely invisible) and `255` (completely visible). Here is an example with `100`:
+Sets the transparency of all selected windows.
 
-![transparency 100](assets/introduction/actions/transparency_100.png)
+![transparency 1](assets/introduction/actions/transparency_1.png)
+
+![transparency 2](assets/introduction/actions/transparency_2.png)
 
 #### Set title
 
 Sets the title of the selected windows.
 
-![custom title](assets/introduction/actions/custom_title.png)
+![set title 1](assets/introduction/actions/set_title_1.png)
+
+![set title 2](assets/introduction/actions/set_title_2.png)
 
 #### Move
 
-Moves all windows to the given position. Windows can also be moved to a negative position. As an example Y to `-32`:
+Moves all windows to the given position. Windows can also be moved to a negative position.
 
-![moved to y negative 32](assets/introduction/actions/moved_to_y_negative_32.png)
+![move 1](assets/introduction/actions/move_1.png)
+
+![move 2](assets/introduction/actions/move_2.png)
 
 #### Resize
 
-Changes the size all selected windows.
+Changes the size of all selected windows.
+
+![move 1](assets/introduction/actions/resize_1.png)
+
+![move 2](assets/introduction/actions/resize_2.png)
 
 #### Display position and size
 
-Displays the position and size of all selected windows in the *display* ([8](https://github.com/dodaucy/auWin#areas "Areas")).
+Displays the position and size of all selected windows in [the display](#the-display "The display").
 
-![get position and size](assets/introduction/actions/get_position_and_size.png)
+![display position and size](assets/introduction/actions/display_position_and_size.png)
 
 #### Display text
 
-Displays the text of all selected windows in the *display* ([8](https://github.com/dodaucy/auWin#areas "Areas")).
+Displays the text of all selected windows in [the display](#the-display "The display").
 
-![get text](assets/introduction/actions/get_text.png)
+![display text](assets/introduction/actions/display_text.png)
+
+### Loading bar
+
+This loading bar shows how far the progress of the current action is.
+
+![description](assets/introduction/loading_bar/description.png)
+
+### The display
+
+While auWin is running, the display shows the return value of the action for each window. The format for each window is this:
+
+`[` Title `] (PID:` PID `)` Optional return value
+
+The return value can be requested information such as the position and size of the window or whether the action was successful.
+
+![example 1](assets/introduction/the_display/example_1.png)
+
+![example 2](assets/introduction/the_display/example_2.png)
+
+### Exclude own process
+
+When activated, no actions are performed on itself.
+
+![exclude own process](assets/introduction/exclude_own_process/description.png)
+
+### Set self on top
+
+If activated, auWin always stay on top of other programs.
+
+![set self on top](assets/introduction/set_self_on_top/description.png)
+
+## License
+
+MIT
+
+Copyright (C) 2022 dodaucy
