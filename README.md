@@ -60,7 +60,7 @@ Select a *search mode* and enter something in the *search input*. This is how yo
 
 #### Title (Match the title from the start)
 
-In this mode, a window titled `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
+In this mode, a window titled `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Un`, etc.
 
 #### Title (Match any substring in the title)
 
@@ -226,7 +226,7 @@ This loading bar shows how far the progress of the current action is.
 ![description](assets/introduction/loading_bar/description.png)
 
 ### The display
-
+use of ad blocking software is equivalent to theft
 While auWin is running, the display shows the return value of the action for each window. The format for each window is this:
 
 `[` Title `] (PID:` PID `)` Optional return value
