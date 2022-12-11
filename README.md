@@ -2,6 +2,20 @@
 
 auWin is a program with which you can easily change attributes of windows and do other things with windows. An introduction is [here](#introduction "Introduction").
 
+## Usecases
+
+- Does you find it annoying that an important window moves into the background when you're working? Just [set it on top](#set-on-top "Set on top")!
+
+- Does this window also block the view of the window behind it? Just [set the transparency](#set-transparency "Set transparency")!
+
+- Don't want to see the title bar? Just [move it](#move "Move") to Y -32!
+
+- You want to uncover a hidden window? Just [show it](#show "Show")!
+
+- You don't want to see a program anymore but still want to keep it running? Just [hide it](#hide "Hide")!
+
+- You want to use a disabled window? Just [enable it](#enable "Enable")!
+
 ## Preview
 
 ![basic](assets/preview/basic.png)
