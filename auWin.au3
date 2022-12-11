@@ -37,7 +37,7 @@
     $handle_input_search = GUICtrlGetHandle($input_search)
 
     $combo_search_by = GUICtrlCreateCombo("Title (Match the title from the start)", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at `Display`)|All windows")
+    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at 'Display')|All windows")
     $handle_combo_search_by = GUICtrlGetHandle($combo_search_by)
 
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
@@ -130,7 +130,7 @@ Func SearchCheck()
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
         GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $combo_data = "PID / Process ID (In the brackets at `Display`)" Then
+    ElseIf $combo_data = "PID / Process ID (In the brackets at 'Display')" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not StringIsInt($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
@@ -279,7 +279,7 @@ While 1
                     AutoItSetOption("WinTitleMatchMode", 3)
                 Case "HWND / Window Handle (Get with 'Display handle')"
                     $HWND_search_mode = True
-                Case "PID / Process ID (In the brackets at `Display`)"
+                Case "PID / Process ID (In the brackets at 'Display')"
                     $PID_search_mode = True
                 Case "All windows"
                     $all_search_mode = True
