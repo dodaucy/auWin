@@ -36,8 +36,8 @@
     $input_search = GUICtrlCreateInput("", 24, 32, 193, 21)
     $handle_input_search = GUICtrlGetHandle($input_search)
 
-    $combo_search_by = GUICtrlCreateCombo("Title (Match the title from the start)", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Title (Match any substring in the title)|Title (Exact title match)|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at 'Display')|All windows")
+    $combo_search_by = GUICtrlCreateCombo("Start of the title", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+    GUICtrlSetData(-1, "Any part of the title|Exact title|HWND / Window Handle (Get with 'Display handle')|PID / Process ID (In the brackets at 'Display')|All windows")
     $handle_combo_search_by = GUICtrlGetHandle($combo_search_by)
 
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
@@ -271,11 +271,11 @@ While 1
             $PID_search_mode = False
             $all_search_mode = False
             Switch GUICtrlRead($combo_search_by)
-                Case "Title (Match the title from the start)"
+                Case "Start of the title"
                     AutoItSetOption("WinTitleMatchMode", 1)
-                Case "Title (Match any substring in the title)"
+                Case "Any part of the title"
                     AutoItSetOption("WinTitleMatchMode", 2)
-                Case "Title (Exact title match)"
+                Case "Exact title"
                     AutoItSetOption("WinTitleMatchMode", 3)
                 Case "HWND / Window Handle (Get with 'Display handle')"
                     $HWND_search_mode = True

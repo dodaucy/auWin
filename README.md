@@ -72,15 +72,15 @@ Select a *search mode* and enter something in the *search input*. This is how yo
 
 ⚠️ This also selects system windows. So be careful what you do with those windows!
 
-#### Title (Match the title from the start)
+#### Start of the title
 
 In this mode, a window titled `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Un`, etc.
 
-#### Title (Match any substring in the title)
+#### Any part of the title
 
 In this mode, a window `titled Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
 
-#### Title (Exact title match)
+#### Exact title
 
 In this mode, a window titled `Untitled - Notepad` will only be selected by `Untitled - Notepad`.
 
