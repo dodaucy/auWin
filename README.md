@@ -223,13 +223,13 @@ Changes the size of all selected windows.
 
 #### Display position and size
 
-Displays the position and size of all selected windows in [the display](#the-display "The display").
+Displays the position and size of all selected windows in the [output display](#output-display "Output display").
 
 ![display position and size](assets/introduction/actions/display_position_and_size.png)
 
 #### Display text
 
-Displays the text of all selected windows in [the display](#the-display "The display").
+Displays the text of all selected windows in the [output display](#output-display "Output display").
 
 ![display text](assets/introduction/actions/display_text.png)
 
@@ -239,9 +239,9 @@ This loading bar shows how far the progress of the current action is.
 
 ![description](assets/introduction/loading_bar/description.png)
 
-### The display
+### Output display
 
-While auWin is running, the display shows the return value of the action for each window. The format for each window is this:
+While auWin is running, the output display shows the return value of the action for each window. The format for each window is this:
 
 `[` Title `] (PID:` PID `)` Optional return value
 
