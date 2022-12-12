@@ -129,7 +129,7 @@ Just lists all windows found. This can be used to test whether the windows are f
 
 #### Display handle
 
-Displays the HWND of the selected windows. This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
+Displays the HWND of the selected windows in the [output display](#output-display "Output display"). This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
 
 ![display handle](assets/introduction/actions/display_handle.png)
 
