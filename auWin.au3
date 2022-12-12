@@ -42,7 +42,7 @@
 
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
-    $combo_action = GUICtrlCreateCombo("Display", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+    $combo_action = GUICtrlCreateCombo("List selected windows", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
     GUICtrlSetData(-1, "Display handle|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
@@ -332,7 +332,7 @@ While 1
 
                     ; Run command
 					Switch $action
-                        Case "Display"
+                        Case "List selected windows"
                             $output_text = ""
                         Case "Display handle"
                             $output_text = $handle

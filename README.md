@@ -90,7 +90,7 @@ In this mode, only a specific window will be selected. Each window has its own H
 
 #### PID / Process ID
 
-In this mode, all windows from a specific process will be selected. You can get the PID with the [Display](#display "Display") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
+In this mode, all windows from a specific process will be selected. You can get the PID with the [List selected windows](#list-selected-windows "List selected windows") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
 
 #### All windows
 
@@ -121,11 +121,11 @@ Here are some examples:
 
 Select a *action* and then press the *start button*.
 
-#### Display
+#### List selected windows
 
 Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select windows](#pid--process-id "PID / Process ID"). An example of an PID is `980`.
 
-![display](assets/introduction/actions/display.png)
+![list selected windows](assets/introduction/actions/list_selected_windows.png)
 
 #### Display handle
 
