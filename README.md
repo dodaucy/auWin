@@ -84,11 +84,11 @@ In this mode, a window `titled Untitled - Notepad` will be selected by `Untitled
 
 In this mode, a window titled `Untitled - Notepad` will only be selected by `Untitled - Notepad`.
 
-#### HWND / Window Handle (Get with 'Display handle')
+#### HWND / Window Handle
 
 In this mode, only a specific window will be selected. Each window has its own HWND. You can get the HWND with the [Display handle](#display-handle "Display handle") action. It can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
 
-#### PID / Process ID (In the brackets at 'Display')
+#### PID / Process ID
 
 In this mode, all windows from a specific process will be selected. You can get the PID with the [Display](#display "Display") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
 
@@ -123,13 +123,13 @@ Select a *action* and then press the *start button*.
 
 #### Display
 
-Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select windows](#pid--process-id-in-the-brackets-at-display "PID / Process ID (In the brackets at 'Display')"). An example of an PID is `980`.
+Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select windows](#pid--process-id "PID / Process ID"). An example of an PID is `980`.
 
 ![display](assets/introduction/actions/display.png)
 
 #### Display handle
 
-Displays the HWND of the selected windows. This can be used to [select windows](#hwnd--window-handle-get-with-display-handle "HWND / Window Handle (Get with 'Display handle')"). An example of a HWND is `0x00000000000802EC`.
+Displays the HWND of the selected windows. This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
 
 ![display handle](assets/introduction/actions/display_handle.png)
 
