@@ -86,7 +86,7 @@ In this mode, a window titled `Untitled - Notepad` will only be selected by `Unt
 
 #### HWND / Window Handle
 
-In this mode, only a specific window will be selected. Each window has its own HWND. You can get the HWND with the [Display handle](#display-handle "Display handle") action. It can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
+In this mode, only a specific window will be selected. Each window has its own HWND. You can get the HWND with the [Display HWND](#display-hwnd "Display HWND") action. It can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
 
 #### PID / Process ID
 
@@ -127,11 +127,11 @@ Just lists all windows found. This can be used to test whether the windows are f
 
 ![list selected windows](assets/introduction/actions/list_selected_windows.png)
 
-#### Display handle
+#### Display HWND
 
 Displays the HWND of the selected windows in the [output display](#output-display "Output display"). This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
 
-![display handle](assets/introduction/actions/display_handle.png)
+![display HWND](assets/introduction/actions/display_HWND.png)
 
 #### Flash
 

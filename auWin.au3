@@ -43,7 +43,7 @@
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
     $combo_action = GUICtrlCreateCombo("List selected windows", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Display handle|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
+    GUICtrlSetData(-1, "Display HWND|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
@@ -334,7 +334,7 @@ While 1
 					Switch $action
                         Case "List selected windows"
                             $output_text = ""
-                        Case "Display handle"
+                        Case "Display HWND"
                             $output_text = $handle
 						Case "Flash"
 							WinFlash($handle)
