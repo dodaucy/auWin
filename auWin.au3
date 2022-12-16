@@ -43,7 +43,7 @@
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
     $combo_action = GUICtrlCreateCombo("List selected windows", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Display HWND|Flash|Send close signal|Send kill signal|Hide|Show|Minimize|Maximize|Restore|Disable|Enable|Set on top|Set not on top|Set transparency|Set title|Move|Resize|Display position and size|Display text")
+    GUICtrlSetData(-1, "Set on top|Set not on top|Hide|Show|Disable|Enable|Set transparency|Set title|Move|Resize|Minimize|Maximize|Restore|Send close signal|Send kill signal|Flash|Display HWND|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
@@ -231,11 +231,11 @@ EndFunc
 
 While 1
 
-	Switch GUIGetMsg()
+    Switch GUIGetMsg()
 
-		Case $GUI_EVENT_CLOSE
+        Case $GUI_EVENT_CLOSE
             ; Exit program
-			Exit
+            Exit
 
         Case $button_introduction
             ; Open on GitHub
@@ -245,7 +245,7 @@ While 1
             ; Open a new issue
             ShellExecute("https://github.com/dodaucy/auWin/issues/new/choose")
 
-		Case $button_start
+        Case $button_start
             ; Disable elements
             GUICtrlSetState($input_search, $GUI_DISABLE)
             GUICtrlSetState($combo_search_by, $GUI_DISABLE)
@@ -263,8 +263,8 @@ While 1
             GUICtrlSetState($button_issue, $GUI_DISABLE)
 
             ; Clear GUI
-			GUICtrlSetData($edit_display, "")
-			GUICtrlSetData($progress, 0)
+            GUICtrlSetData($edit_display, "")
+            GUICtrlSetData($progress, 0)
 
             ; Set search mode
             $HWND_search_mode = False
@@ -290,7 +290,7 @@ While 1
             $action = GUICtrlRead($combo_action)
 
             ; Get window list
-			If $all_search_mode Or $PID_search_mode Then
+            If $all_search_mode Or $PID_search_mode Then
                 ; Get all windows
                 $win_list = WinList()
             ElseIf $HWND_search_mode Then
@@ -298,9 +298,9 @@ While 1
                 $handle_ptr = Ptr($search)
                 If WinExists($handle_ptr) Then
                     Local $win_list[2][2] = [[1, ""], [WinGetTitle($handle_ptr), $handle_ptr]]
-				Else
-					Local $win_list[1][2] = [[0, ""]]
-				EndIf
+                Else
+                    Local $win_list[1][2] = [[0, ""]]
+                EndIf
             Else
                 ; Get window by title
                 $win_list = WinList($search)
@@ -324,76 +324,76 @@ While 1
             For $i = 1 To $win_list[0][0] Step 1
 
                 ; Get infos from window
-			    $handle = $win_list[$i][1]
+                $handle = $win_list[$i][1]
                 $pid = WinGetProcess($handle)
 
                 ; Filter windows
-			    If (Not $self_protect Or $pid <> @AutoItPID) And ($all_search_mode Or Not $PID_search_mode Or $pid == $search) Then
+                If (Not $self_protect Or $pid <> @AutoItPID) And ($all_search_mode Or Not $PID_search_mode Or $pid == $search) Then
 
                     ; Run command
-					Switch $action
+                    Switch $action
                         Case "List selected windows"
                             $output_text = ""
+                        Case "Set on top"
+                            $output_text = ProcessReturnValue(WinSetOnTop($handle, "", 1))
+                        Case "Set not on top"
+                            $output_text = ProcessReturnValue(WinSetOnTop($handle, "", 0))
+                        Case "Hide"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_HIDE))
+                        Case "Show"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_SHOW))
+                        Case "Disable"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_DISABLE))
+                        Case "Enable"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_ENABLE))
+                        Case "Set transparency"
+                            $output_text = ProcessReturnValue(WinSetTrans($handle, "", $new_trans))
+                        Case "Set title"
+                            $output_text = ProcessReturnValue(WinSetTitle($handle, "", $new_title))
+                        Case "Move"
+                            $output_text = ProcessReturnValue(WinMove($handle, "", $new_x, $new_y))
+                        Case "Resize"
+                            $output_text = ProcessReturnValue(WinMove($handle, "", Default, Default, $new_width, $new_height))
+                        Case "Minimize"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_MINIMIZE))
+                        Case "Maximize"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_MAXIMIZE))
+                        Case "Restore"
+                            $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_RESTORE))
+                        Case "Send close signal"
+                            $output_text = ProcessReturnValue(WinClose($handle))
+                        Case "Send kill signal"
+                            $output_text = ProcessReturnValue(WinKill($handle))
+                        Case "Flash"
+                            WinFlash($handle)
+                            $output_text = "Flashed"
                         Case "Display HWND"
                             $output_text = $handle
-						Case "Flash"
-							WinFlash($handle)
-                            $output_text = "Flashed"
-						Case "Send close signal"
-							$output_text = ProcessReturnValue(WinClose($handle))
-						Case "Send kill signal"
-                            $output_text = ProcessReturnValue(WinKill($handle))
-						Case "Hide"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_HIDE))
-						Case "Show"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_SHOW))
-						Case "Minimize"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_MINIMIZE))
-						Case "Maximize"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_MAXIMIZE))
-						Case "Restore"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_RESTORE))
-						Case "Disable"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_DISABLE))
-						Case "Enable"
-							$output_text = ProcessReturnValue(WinSetState($handle, "", @SW_ENABLE))
-						Case "Set on top"
-							$output_text = ProcessReturnValue(WinSetOnTop($handle, "", 1))
-						Case "Set not on top"
-							$output_text = ProcessReturnValue(WinSetOnTop($handle, "", 0))
-						Case "Set transparency"
-							$output_text = ProcessReturnValue(WinSetTrans($handle, "", $new_trans))
-						Case "Set title"
-							$output_text = ProcessReturnValue(WinSetTitle($handle, "", $new_title))
-						Case "Move"
-							$output_text = ProcessReturnValue(WinMove($handle, "", $new_x, $new_y))
-						Case "Resize"
-                            $output_text = ProcessReturnValue(WinMove($handle, "", Default, Default, $new_width, $new_height))
-						Case "Display position and size"
-							$pos = WinGetPos($handle)
-							$output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
-						Case "Display text"
-							$output_text = WinGetText($handle)
+                        Case "Display position and size"
+                            $pos = WinGetPos($handle)
+                            $output_text = "X: " & $pos[0] & " Y: " & $pos[1] & " Width: " & $pos[2] & " Height: " & $pos[3]
+                        Case "Display text"
+                            $output_text = WinGetText($handle)
                             If $output_text <> "" Then
                                 $output_text = @CRLF & $output_text
                             EndIf
-					EndSwitch
+                    EndSwitch
 
                     ; Append result to output text box
                     If $output_text <> "" Then
                         $output_text = " " & $output_text
                     EndIf
-					GUICtrlSetData($edit_display, "[" & $win_list[$i][0] & "] (PID: " & $pid & ")" & $output_text & @CRLF & GUICtrlRead($edit_display))
+                    GUICtrlSetData($edit_display, "[" & $win_list[$i][0] & "] (PID: " & $pid & ")" & $output_text & @CRLF & GUICtrlRead($edit_display))
 
-				EndIf
+                EndIf
 
                 ; Update progress bar
-				GUICtrlSetData($progress, $i / $win_list[0][0] * 100)
+                GUICtrlSetData($progress, $i / $win_list[0][0] * 100)
 
-			Next
+            Next
 
             ; Set progress bar to 100% in case it wasn't already
-			GUICtrlSetData($progress, 100)
+            GUICtrlSetData($progress, 100)
 
             ; Enable elements
             If Not $all_search_mode Then
@@ -413,6 +413,6 @@ While 1
             GUICtrlSetState($button_introduction, $GUI_ENABLE)
             GUICtrlSetState($button_issue, $GUI_ENABLE)
 
-	EndSwitch
+    EndSwitch
 
 WEnd

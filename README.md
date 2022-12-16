@@ -127,31 +127,13 @@ Just lists all windows found. This can be used to test whether the windows are f
 
 ![list selected windows](assets/introduction/actions/list_selected_windows.png)
 
-#### Display HWND
+#### Set on top
 
-Displays the HWND of the selected windows in the [output display](#output-display "Output display"). This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
+Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](#set-not-on-top "Set not on top").
 
-![display HWND](assets/introduction/actions/display_HWND.png)
+#### Set not on top
 
-#### Flash
-
-Flashes the selected windows until this window is selected.
-
-![flash](assets/introduction/actions/flash.png)
-
-#### Send close signal
-
-Sends a close signal to the selected windows. Some windows may ask for confirmation.
-
-⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
-
-![close](assets/introduction/actions/close.png)
-
-#### Send kill signal
-
-Sends a kill signal to the selected windows.
-
-⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
+Ensures that other windows can again be above the selected windows. Can be undone with [set on top](#set-on-top "Set on top").
 
 #### Hide
 
@@ -161,18 +143,6 @@ Hides the selected windows. These continue to run in the background but are no l
 
 Shows the selected windows that were not previously visible. Can be undone with [hide](#hide "Hide").
 
-#### Minimize
-
-Minimizes the selected windows.
-
-#### Maximize
-
-Maximizes the selected windows.
-
-#### Restore
-
-Restores the selected windows. This is the third state next to [minimize](#minimize "Minimize") and [maximize](#maximize "Maximize"). The windows are visible but do not cover the entire screen.
-
 #### Disable
 
 Disables the selected windows. This means that you can no longer interact with the windows. Can be undone with [enable](#enable "Enable").
@@ -180,14 +150,6 @@ Disables the selected windows. This means that you can no longer interact with t
 #### Enable
 
 Enables the selected windows. After that you can interact with the windows again. Can be undone with [disable](#disable "Disable").
-
-#### Set on top
-
-Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](#set-not-on-top "Set not on top").
-
-#### Set not on top
-
-Ensures that other windows can again be above the selected windows. Can be undone with [set on top](#set-on-top "Set on top").
 
 #### Set transparency
 
@@ -220,6 +182,44 @@ Changes the size of all selected windows.
 ![move 1](assets/introduction/actions/resize_1.png)
 
 ![move 2](assets/introduction/actions/resize_2.png)
+
+#### Minimize
+
+Minimizes the selected windows.
+
+#### Maximize
+
+Maximizes the selected windows.
+
+#### Restore
+
+Restores the selected windows. This is the third state next to [minimize](#minimize "Minimize") and [maximize](#maximize "Maximize"). The windows are visible but do not cover the entire screen.
+
+#### Send close signal
+
+Sends a close signal to the selected windows. Some windows may ask for confirmation.
+
+⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
+
+![close](assets/introduction/actions/close.png)
+
+#### Send kill signal
+
+Sends a kill signal to the selected windows.
+
+⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
+
+#### Flash
+
+Flashes the selected windows until this window is selected.
+
+![flash](assets/introduction/actions/flash.png)
+
+#### Display HWND
+
+Displays the HWND of the selected windows in the [output display](#output-display "Output display"). This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
+
+![display HWND](assets/introduction/actions/display_HWND.png)
 
 #### Display position and size
 
