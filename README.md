@@ -18,9 +18,9 @@ auWin is a program with which you can easily change attributes of windows and do
 
 ## Preview
 
-![basic](assets/preview/basic.png)
+![basic](img/preview/basic.png)
 
-![in action](assets/preview/in_action.png)
+![in action](img/preview/in_action.png)
 
 ## Run
 
@@ -38,15 +38,15 @@ Download the standalone executable (`auWin.exe`) from [the last release](https:/
 
 1. Right click `auWin.au3` and click on `Compile with Options`. The specified settings for the AutoIt3Wrapper are not loaded using the other options.
 
-![compile_with_options](assets/compile/compile_with_options.png)
+![compile_with_options](img/compile/compile_with_options.png)
 
 2. Now just click on `Compile Script`.
 
-![compile_script](assets/compile/compile_script.png)
+![compile_script](img/compile/compile_script.png)
 
 3. There is now an executable in the same folder as the `auWin.au3` file.
 
-![compiled](assets/compile/compiled.png)
+![compiled](img/compile/compiled.png)
 
 ### Note
 
@@ -66,7 +66,7 @@ Stand november 2022 - From the [AutoIt Downloads Overview](https://www.autoitscr
 
 ### Select windows
 
-![description](assets/introduction/select_windows/description.png)
+![description](img/introduction/select_windows/description.png)
 
 Select a *select mode* and enter something in the *select input*. So you select windows that should be affected by an action.
 
@@ -121,7 +121,7 @@ Here are some examples:
 
 ### Actions
 
-![description](assets/introduction/actions/description.png)
+![description](img/introduction/actions/description.png)
 
 Select a *action* and then press the *start button*.
 
@@ -129,7 +129,7 @@ Select a *action* and then press the *start button*.
 
 Just lists all windows found. This can be used to test whether the windows are found or to get the [PID](#pid "PID").
 
-![list selected windows](assets/introduction/actions/list_selected_windows.png)
+![list selected windows](img/introduction/actions/list_selected_windows.png)
 
 #### Set on top
 
@@ -159,33 +159,33 @@ Enables the selected windows. After that you can interact with the windows again
 
 Sets the transparency of all selected windows.
 
-![transparency 1](assets/introduction/actions/transparency_1.png)
+![transparency 1](img/introduction/actions/transparency_1.png)
 
-![transparency 2](assets/introduction/actions/transparency_2.png)
+![transparency 2](img/introduction/actions/transparency_2.png)
 
 #### Set title
 
 Sets the [window title](#window-title "Window Title") of the selected windows.
 
-![set title 1](assets/introduction/actions/set_title_1.png)
+![set title 1](img/introduction/actions/set_title_1.png)
 
-![set title 2](assets/introduction/actions/set_title_2.png)
+![set title 2](img/introduction/actions/set_title_2.png)
 
 #### Move
 
 Moves all windows to the given position. Windows can also be moved to a negative position.
 
-![move 1](assets/introduction/actions/move_1.png)
+![move 1](img/introduction/actions/move_1.png)
 
-![move 2](assets/introduction/actions/move_2.png)
+![move 2](img/introduction/actions/move_2.png)
 
 #### Resize
 
 Changes the size of all selected windows.
 
-![move 1](assets/introduction/actions/resize_1.png)
+![move 1](img/introduction/actions/resize_1.png)
 
-![move 2](assets/introduction/actions/resize_2.png)
+![move 2](img/introduction/actions/resize_2.png)
 
 #### Minimize
 
@@ -205,7 +205,7 @@ Sends a close signal to the selected windows. Some windows may ask for confirmat
 
 ⚠️ Whether this signal is processed is entirely up to the program. The program could still continue. Use your task manager to kill a process.
 
-![close](assets/introduction/actions/close.png)
+![close](img/introduction/actions/close.png)
 
 #### Send kill signal
 
@@ -217,31 +217,31 @@ Sends a kill signal to the selected windows.
 
 Flashes the selected windows until this window is selected.
 
-![flash](assets/introduction/actions/flash.png)
+![flash](img/introduction/actions/flash.png)
 
 #### Display HWND
 
 Displays the [HWND](#hwnd "HWND") of the selected windows in the [output display](#output-display "Output display").
 
-![display HWND](assets/introduction/actions/display_HWND.png)
+![display HWND](img/introduction/actions/display_HWND.png)
 
 #### Display position and size
 
 Displays the position and size of all selected windows in the [output display](#output-display "Output display").
 
-![display position and size](assets/introduction/actions/display_position_and_size.png)
+![display position and size](img/introduction/actions/display_position_and_size.png)
 
 #### Display text
 
 Displays the [text](#text "Text") of all selected windows in the [output display](#output-display "Output display").
 
-![display text](assets/introduction/actions/display_text.png)
+![display text](img/introduction/actions/display_text.png)
 
 ### Loading bar
 
 This loading bar shows how far the progress of the current action is.
 
-![description](assets/introduction/loading_bar/description.png)
+![description](img/introduction/loading_bar/description.png)
 
 ### Output display
 
@@ -251,33 +251,33 @@ While auWin is running, the output display shows the return value of the action 
 
 The return value can be requested information such as the position and size of the window or whether the action was successful.
 
-![example 1](assets/introduction/the_display/example_1.png)
+![example 1](img/introduction/the_display/example_1.png)
 
-![example 2](assets/introduction/the_display/example_2.png)
+![example 2](img/introduction/the_display/example_2.png)
 
 ### Exclude own process
 
 When activated, no actions are performed on itself.
 
-![exclude own process](assets/introduction/exclude_own_process/description.png)
+![exclude own process](img/introduction/exclude_own_process/description.png)
 
 ### Set self on top
 
 If activated, auWin always stay on top of other programs.
 
-![set self on top](assets/introduction/set_self_on_top/description.png)
+![set self on top](img/introduction/set_self_on_top/description.png)
 
 ### Window Title
 
 The title of a window.
 
-![window title](assets/introduction/window_title.png)
+![window title](img/introduction/window_title.png)
 
 ### Text
 
 The text of a window. Only some windows return a text. You can get the text with the [Display text](#display-text "Display text") action and use it for the [Any part of the text](#any-part-of-the-text "Any part of the text") select mode.
 
-![text](assets/introduction/text.png)
+![text](img/introduction/text.png)
 
 ### HWND
 
