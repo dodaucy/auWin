@@ -119,8 +119,8 @@ EndFunc
 
 
 Func SearchCheck()
-    $combo_data = GUICtrlRead($combo_search_by)
-    If $combo_data = "HWND / Window Handle" Then
+    $search_mode = GUICtrlRead($combo_search_by)
+    If $search_mode = "HWND / Window Handle" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not Ptr($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
@@ -130,7 +130,7 @@ Func SearchCheck()
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
         GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $combo_data = "PID / Process ID" Then
+    ElseIf $search_mode = "PID / Process ID" Then
         $search_data = GUICtrlRead($input_search)
         If $search_data <> "" And Not StringIsInt($search_data) Then
             GUICtrlSetColor($input_search, 0xFF0000)
@@ -140,7 +140,7 @@ Func SearchCheck()
             GUICtrlSetState($button_start, $GUI_ENABLE)
         EndIf
         GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $combo_data = "All windows" Then
+    ElseIf $search_mode = "All windows" Then
         GUICtrlSetColor($input_search, 0x000000)
         GUICtrlSetState($button_start, $GUI_ENABLE)
         GUICtrlSetState($input_search, $GUI_DISABLE)
@@ -267,22 +267,14 @@ While 1
             GUICtrlSetData($progress, 0)
 
             ; Set search mode
-            $HWND_search_mode = False
-            $PID_search_mode = False
-            $all_search_mode = False
-            Switch GUICtrlRead($combo_search_by)
+            $search_mode = GUICtrlRead($combo_search_by)
+            Switch $search_mode
                 Case "Start of the title"
                     AutoItSetOption("WinTitleMatchMode", 1)
                 Case "Any part of the title"
                     AutoItSetOption("WinTitleMatchMode", 2)
                 Case "Exact title"
                     AutoItSetOption("WinTitleMatchMode", 3)
-                Case "HWND / Window Handle"
-                    $HWND_search_mode = True
-                Case "PID / Process ID"
-                    $PID_search_mode = True
-                Case "All windows"
-                    $all_search_mode = True
             EndSwitch
 
             ; Read input fields
@@ -290,10 +282,10 @@ While 1
             $action = GUICtrlRead($combo_action)
 
             ; Get window list
-            If $all_search_mode Or $PID_search_mode Then
+            If $search_mode == "All windows" Or $search_mode == "PID / Process ID" Then
                 ; Get all windows
                 $win_list = WinList()
-            ElseIf $HWND_search_mode Then
+            ElseIf $search_mode == "HWND / Window Handle" Then
                 ; Get window by window handle
                 $handle_ptr = Ptr($search)
                 If WinExists($handle_ptr) Then
@@ -328,7 +320,7 @@ While 1
                 $pid = WinGetProcess($handle)
 
                 ; Filter windows
-                If (Not $self_protect Or $pid <> @AutoItPID) And ($all_search_mode Or Not $PID_search_mode Or $pid == $search) Then
+                If (Not $self_protect Or $pid <> @AutoItPID) And ($search_mode == "All windows" Or Not $search_mode == "PID / Process ID" Or $pid == $search) Then
 
                     ; Run command
                     Switch $action
@@ -396,7 +388,7 @@ While 1
             GUICtrlSetData($progress, 100)
 
             ; Enable elements
-            If Not $all_search_mode Then
+            If $search_mode <> "All windows" Then
                 GUICtrlSetState($input_search, $GUI_ENABLE)
             EndIf
             GUICtrlSetState($combo_search_by, $GUI_ENABLE)
