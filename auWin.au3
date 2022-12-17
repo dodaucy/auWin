@@ -43,7 +43,7 @@
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
     $combo_action = GUICtrlCreateCombo("List selected windows", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Set on top|Set not on top|Hide|Show|Disable|Enable|Set transparency|Set title|Move|Resize|Minimize|Maximize|Restore|Send close signal|Send kill signal|Flash|Display HWND|Display position and size|Display text")
+    GUICtrlSetData(-1, "Set on top|Set not on top|Hide|Show|Disable|Enable|Set transparency...|Set title...|Move...|Resize...|Minimize|Maximize|Restore|Send close signal|Send kill signal|Flash|Display HWND|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
@@ -181,24 +181,24 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
                 GUICtrlSetState($label_visible, $GUI_HIDE)
                 GUICtrlSetState($slider_trans, $GUI_HIDE)
                 Switch GUICtrlRead($combo_action)
-                    Case "Set transparency"
+                    Case "Set transparency..."
                         UpdateTransparencyLabel()
                         GUICtrlSetState($label_more_infos, $GUI_SHOW)
                         GUICtrlSetState($label_invisible, $GUI_SHOW)
                         GUICtrlSetState($label_visible, $GUI_SHOW)
                         GUICtrlSetState($slider_trans, $GUI_SHOW)
-                    Case "Set title"
+                    Case "Set title..."
                         GUICtrlSetData($label_more_infos, "New title:")
                         GUICtrlSetState($label_more_infos, $GUI_SHOW)
                         GUICtrlSetState($input_one_line, $GUI_SHOW)
-                    Case "Move"
+                    Case "Move..."
                         GUICtrlSetData($label_more_infos, "Please enter the new coordinates:")
                         GUICtrlSetState($label_more_infos, $GUI_SHOW)
                         GUICtrlSetState($label_x, $GUI_SHOW)
                         GUICtrlSetState($input_x, $GUI_SHOW)
                         GUICtrlSetState($label_y, $GUI_SHOW)
                         GUICtrlSetState($input_y, $GUI_SHOW)
-                    Case "Resize"
+                    Case "Resize..."
                         GUICtrlSetData($label_more_infos, "Please enter the new size:")
                         GUICtrlSetState($label_more_infos, $GUI_SHOW)
                         GUICtrlSetState($label_width, $GUI_SHOW)
@@ -308,14 +308,14 @@ While 1
 
             ; Read more infos
             Switch GUICtrlRead($combo_action)
-                Case "Set transparency"
+                Case "Set transparency..."
                     $new_trans = GUICtrlRead($slider_trans)
-                Case "Set title"
+                Case "Set title..."
                     $new_title = GUICtrlRead($input_one_line)
-                Case "Move"
+                Case "Move..."
                     $new_x = GUICtrlRead($input_x)
                     $new_y = GUICtrlRead($input_y)
-                Case "Resize"
+                Case "Resize..."
                     $new_width = GUICtrlRead($input_width)
                     $new_height = GUICtrlRead($input_height)
             EndSwitch
@@ -346,13 +346,13 @@ While 1
                             $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_DISABLE))
                         Case "Enable"
                             $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_ENABLE))
-                        Case "Set transparency"
+                        Case "Set transparency..."
                             $output_text = ProcessReturnValue(WinSetTrans($handle, "", $new_trans))
-                        Case "Set title"
+                        Case "Set title..."
                             $output_text = ProcessReturnValue(WinSetTitle($handle, "", $new_title))
-                        Case "Move"
+                        Case "Move..."
                             $output_text = ProcessReturnValue(WinMove($handle, "", $new_x, $new_y))
-                        Case "Resize"
+                        Case "Resize..."
                             $output_text = ProcessReturnValue(WinMove($handle, "", Default, Default, $new_width, $new_height))
                         Case "Minimize"
                             $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_MINIMIZE))
