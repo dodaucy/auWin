@@ -10,7 +10,7 @@
 
 #AutoIt3Wrapper_Res_ProductName=auWin
 #AutoIt3Wrapper_Res_Description=auWin is a program with which you can easily change attributes of windows and do other things with windows.
-#AutoIt3Wrapper_Res_ProductVersion=1.1.0
+#AutoIt3Wrapper_Res_ProductVersion=1.1.1
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright (C) 2022 dodaucy
 #AutoIt3Wrapper_Compression=0
 #AutoIt3Wrapper_UseUpx=N
@@ -28,7 +28,7 @@
 
 #Region ### Create GUI ###
 
-    $auWin = GUICreate("auWin (1.1.0)", 522, 474)
+    $auWin = GUICreate("auWin (v1.1.1)", 522, 474)
     WinSetOnTop($auWin, "", 1)
 
     $group_search_for_windows = GUICtrlCreateGroup("Select windows", 8, 8, 505, 65)
