@@ -37,7 +37,7 @@
     $handle_input_search = GUICtrlGetHandle($input_search)
 
     $combo_search_by = GUICtrlCreateCombo("Start of the title", 228, 32, 269, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Any part of the title|Exact title|HWND / Window Handle|PID / Process ID|All windows")
+    GUICtrlSetData(-1, "Any part of the title|Exact title|HWND / Window Handle|PID / Process ID|Any part of the text|All windows")
     $handle_combo_search_by = GUICtrlGetHandle($combo_search_by)
 
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
@@ -277,7 +277,7 @@ While 1
                     AutoItSetOption("WinTitleMatchMode", 3)
             EndSwitch
 
-            ; Read input fields
+            ; Read search field and action
             $search = GUICtrlRead($input_search)
             $action = GUICtrlRead($combo_action)
 
@@ -293,6 +293,8 @@ While 1
                 Else
                     Local $win_list[1][2] = [[0, ""]]
                 EndIf
+            ElseIf $search_mode == "Any part of the text" Then
+                $win_list = WinList("", $search)
             Else
                 ; Get window by title
                 $win_list = WinList($search)
@@ -320,7 +322,7 @@ While 1
                 $pid = WinGetProcess($handle)
 
                 ; Filter windows
-                If (Not $self_protect Or $pid <> @AutoItPID) And ($search_mode == "All windows" Or Not $search_mode == "PID / Process ID" Or $pid == $search) Then
+                If (Not $self_protect Or $pid <> @AutoItPID) And ($search_mode == "All windows" Or $search_mode <> "PID / Process ID" Or $pid == $search) Then
 
                     ; Run command
                     Switch $action

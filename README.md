@@ -92,6 +92,10 @@ In this mode, only a specific window will be selected. Each window has its own H
 
 In this mode, all windows from a specific process will be selected. You can get the PID with the [List selected windows](#list-selected-windows "List selected windows") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
 
+#### Any part of the text
+
+In this mode, all windows containing the text will be selected. You can get the text with the [Display text](#display-text "Display text") action.
+
 #### All windows
 
 In this mode, all windows will be selectet. You can't enter anything in the *search input*.
