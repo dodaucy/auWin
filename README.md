@@ -94,7 +94,7 @@ In this mode, all windows from a specific process with a specific [PID](#pid "PI
 
 #### Any part of the text
 
-In this mode, all windows containing the text will be selected. You can get the text with the [Display text](#display-text "Display text") action.
+In this mode, all windows containing the [text](#text "Text") will be selected.
 
 #### All windows
 
@@ -233,7 +233,7 @@ Displays the position and size of all selected windows in the [output display](#
 
 #### Display text
 
-Displays the text of all selected windows in the [output display](#output-display "Output display").
+Displays the [text](#text "Text") of all selected windows in the [output display](#output-display "Output display").
 
 ![display text](assets/introduction/actions/display_text.png)
 
@@ -275,7 +275,7 @@ The title of a window.
 
 ### Text
 
-The text of a window. Only some windows return a text.
+The text of a window. Only some windows return a text. You can get the text with the [Display text](#display-text "Display text") action and use it for the [Any part of the text](#any-part-of-the-text "Any part of the text") select mode.
 
 ![text](assets/introduction/text.png)
 
