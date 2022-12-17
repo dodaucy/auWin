@@ -47,6 +47,7 @@
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
+    GUICtrlSetState(-1, $GUI_DISABLE)
 
     $label_more_infos = GUICtrlCreateLabel("", 192, 106, 299, 17, $SS_CENTER)
     GUICtrlSetState(-1, $GUI_HIDE)
@@ -120,34 +121,37 @@ EndFunc
 
 Func SearchCheck()
     $search_mode = GUICtrlRead($combo_search_by)
-    If $search_mode = "HWND / Window Handle" Then
-        $search_data = GUICtrlRead($input_search)
-        If $search_data <> "" And Not Ptr($search_data) Then
-            GUICtrlSetColor($input_search, 0xFF0000)
-            GUICtrlSetState($button_start, $GUI_DISABLE)
-        Else
-            GUICtrlSetColor($input_search, 0x000000)
-            GUICtrlSetState($button_start, $GUI_ENABLE)
-        EndIf
-        GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $search_mode = "PID / Process ID" Then
-        $search_data = GUICtrlRead($input_search)
-        If $search_data <> "" And Not StringIsInt($search_data) Then
-            GUICtrlSetColor($input_search, 0xFF0000)
-            GUICtrlSetState($button_start, $GUI_DISABLE)
-        Else
-            GUICtrlSetColor($input_search, 0x000000)
-            GUICtrlSetState($button_start, $GUI_ENABLE)
-        EndIf
-        GUICtrlSetState($input_search, $GUI_ENABLE)
-    ElseIf $search_mode = "All windows" Then
+    If $search_mode = "All windows" Then
         GUICtrlSetColor($input_search, 0x000000)
         GUICtrlSetState($button_start, $GUI_ENABLE)
         GUICtrlSetState($input_search, $GUI_DISABLE)
     Else
-        GUICtrlSetColor($input_search, 0x000000)
-        GUICtrlSetState($button_start, $GUI_ENABLE)
+        $search = GUICtrlRead($input_search)
         GUICtrlSetState($input_search, $GUI_ENABLE)
+        If $search == "" Then
+            GUICtrlSetState($button_start, $GUI_DISABLE)
+        ElseIf $search_mode = "HWND / Window Handle" Then
+            $search = GUICtrlRead($input_search)
+            If $search <> "" And Not Ptr($search) Then
+                GUICtrlSetColor($input_search, 0xFF0000)
+                GUICtrlSetState($button_start, $GUI_DISABLE)
+            Else
+                GUICtrlSetColor($input_search, 0x000000)
+                GUICtrlSetState($button_start, $GUI_ENABLE)
+            EndIf
+        ElseIf $search_mode = "PID / Process ID" Then
+            $search = GUICtrlRead($input_search)
+            If $search <> "" And Not StringIsInt($search) Then
+                GUICtrlSetColor($input_search, 0xFF0000)
+                GUICtrlSetState($button_start, $GUI_DISABLE)
+            Else
+                GUICtrlSetColor($input_search, 0x000000)
+                GUICtrlSetState($button_start, $GUI_ENABLE)
+            EndIf
+        Else
+            GUICtrlSetColor($input_search, 0x000000)
+            GUICtrlSetState($button_start, $GUI_ENABLE)
+        EndIf
     EndIf
 EndFunc
 
