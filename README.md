@@ -66,31 +66,31 @@ Stand november 2022 - From the [AutoIt Downloads Overview](https://www.autoitscr
 
 ### Select windows
 
-![description](assets/introduction/basic_search/description.png)
+![description](assets/introduction/select_windows/description.png)
 
-Select a *search mode* and enter something in the *search input*. This is how you select the windows that should be affected by an action.
+Select a *select mode* and enter something in the *select input*. So you select windows that should be affected by an action.
 
 ⚠️ This also selects system windows. So be careful what you do with those windows!
 
 #### Start of the title
 
-In this mode, a window titled `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Un`, etc.
+In this mode, a window with the [window title](#window-title "Window Title") `Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Un`, etc.
 
 #### Any part of the title
 
-In this mode, a window `titled Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
+In this mode, a window with the [window title](#window-title "Window Title") `titled Untitled - Notepad` will be selected by `Untitled - Notepad`, `Untitled`, `Notepad`, `pad`, etc.
 
 #### Exact title
 
-In this mode, a window titled `Untitled - Notepad` will only be selected by `Untitled - Notepad`.
+In this mode, a window with the [window title](#window-title "Window Title") `Untitled - Notepad` will only be selected by `Untitled - Notepad`.
 
 #### HWND / Window Handle
 
-In this mode, only a specific window will be selected. Each window has its own HWND. You can get the HWND with the [Display HWND](#display-hwnd "Display HWND") action. It can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
+In this mode, only a specific window with a specific [HWND](#hwnd "HWND") will be selected.
 
 #### PID / Process ID
 
-In this mode, all windows from a specific process will be selected. You can get the PID with the [List selected windows](#list-selected-windows "List selected windows") action (the PID is in the brackets) or with the task manager. An example of an PID is `980`.
+In this mode, all windows from a specific process with a specific [PID](#pid "PID") will be selected.
 
 #### Any part of the text
 
@@ -98,26 +98,26 @@ In this mode, all windows containing the text will be selected. You can get the 
 
 #### All windows
 
-In this mode, all windows will be selectet. You can't enter anything in the *search input*.
+In this mode, all windows will be selectet. You can't enter anything in the *select input*.
 
 #### Advanced
 
-When have selected a title mode, you can use these properties instead of a title to select windows:
+When have selected the [Start of the title](#start-of-the-title "Start of the title"), [Any part of the title](#any-part-of-the-title "Any part of the title") or [Exact title](#exact-title "Exact title") mode, you can use these properties instead of a [title](#window-title "Window Title") to select windows:
 
-- `TITLE` - Window title
+- `TITLE` - [Window title](#window-title "Window Title")
 - `CLASS` - The internal window classname
-- `REGEXPTITLE` - Window title using a regular expression
+- `REGEXPTITLE` - [Window title](#window-title "Window Title") using a regular expression
 - `REGEXPCLASS` - Window classname using a regular expression
 - `X` \ `Y` \ `W` \ `H` - The position and size of a window
 - `INSTANCE` -  The 1-based instance when all given properties match
 
-One or more properties can be used in the *search input* in the format: `[PROPERTY1 : Value1; PROPERTY2:Value2]`. If a Value must contain a `;` it must be doubled.
+One or more properties can be used in the *select input* in the format: `[PROPERTY1 : Value1; PROPERTY2:Value2]`. If a value must contain a `;` it must be doubled.
 
 Here are some examples:
 
 - `[CLASS:Notepad]` - All windows with the classname `Notepad`
-- `[TITLE:My Window; CLASS:My Class; INSTANCE:2]` - The 2nd instance of a window with title `My Window` and classname `My Class`
-- `[REGEXPTITLE:(?i)(.*SciTE.*|.*Internet Explorer.*)]` - All windows matching title defined by a regular expression
+- `[TITLE:My Window; CLASS:My Class; INSTANCE:2]` - The 2nd instance of a window with [title](#window-title "Window Title") `My Window` and classname `My Class`
+- `[REGEXPTITLE:(?i)(.*SciTE.*|.*Internet Explorer.*)]` - All windows matching [title](#window-title "Window Title") defined by a regular expression
 
 ### Actions
 
@@ -127,7 +127,7 @@ Select a *action* and then press the *start button*.
 
 #### List selected windows
 
-Just lists all windows found. This can be used to test whether the windows are found or to get the PID wich can be used to [select windows](#pid--process-id "PID / Process ID"). An example of an PID is `980`.
+Just lists all windows found. This can be used to test whether the windows are found or to get the [PID](#pid "PID").
 
 ![list selected windows](assets/introduction/actions/list_selected_windows.png)
 
@@ -165,7 +165,7 @@ Sets the transparency of all selected windows.
 
 #### Set title
 
-Sets the title of the selected windows.
+Sets the [window title](#window-title "Window Title") of the selected windows.
 
 ![set title 1](assets/introduction/actions/set_title_1.png)
 
@@ -221,7 +221,7 @@ Flashes the selected windows until this window is selected.
 
 #### Display HWND
 
-Displays the HWND of the selected windows in the [output display](#output-display "Output display"). This can be used to [select windows](#hwnd--window-handle "HWND / Window Handle"). An example of a HWND is `0x00000000000802EC`.
+Displays the [HWND](#hwnd "HWND") of the selected windows in the [output display](#output-display "Output display").
 
 ![display HWND](assets/introduction/actions/display_HWND.png)
 
@@ -247,7 +247,7 @@ This loading bar shows how far the progress of the current action is.
 
 While auWin is running, the output display shows the return value of the action for each window. The format for each window is this:
 
-`[` Title `] (PID:` PID `)` Optional return value
+`[` [Window Title](#window-title "Window Title") `] (PID:` [PID](#pid "PID") `)` Optional return value
 
 The return value can be requested information such as the position and size of the window or whether the action was successful.
 
@@ -266,6 +266,26 @@ When activated, no actions are performed on itself.
 If activated, auWin always stay on top of other programs.
 
 ![set self on top](assets/introduction/set_self_on_top/description.png)
+
+### Window Title
+
+The title of a window.
+
+![window title](assets/introduction/window_title.png)
+
+### Text
+
+The text of a window. Only some windows return a text.
+
+![text](assets/introduction/text.png)
+
+### HWND
+
+HWND means window handle. Each window has its own HWND. You can get the HWND with the [Display HWND](#display-hwnd "Display HWND") action and use it for the [HWND / Window Handle](#hwnd--window-handle "HWND / Window Handle") select mode. This select mode can be useful when the window name changes. An example of a HWND is `0x00000000000802EC`.
+
+### PID
+
+PID means process ID or process identifier. Each process has its own PID and can have several windows. You can get the PID with the [List selected windows](#list-selected-windows "List selected windows") action (the PID is in behind `PID:`) or with the task manager and use it for the [PID / Process ID](#pid--process-id "PID / Process ID") select mode. An example of an PID is `980`.
 
 ## License
 
