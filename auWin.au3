@@ -11,6 +11,7 @@
 #AutoIt3Wrapper_Res_ProductName=auWin
 #AutoIt3Wrapper_Res_Description=auWin is a program with which you can easily change attributes of windows and do other things with windows.
 #AutoIt3Wrapper_Res_ProductVersion=1.1.1
+#AutoIt3Wrapper_Res_Fileversion=1.1.1
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright (C) 2022 dodaucy
 #AutoIt3Wrapper_Compression=0
 #AutoIt3Wrapper_UseUpx=N
