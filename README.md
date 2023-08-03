@@ -4,7 +4,7 @@ auWin is a program with which you can easily change attributes of windows and do
 
 ## Usecases
 
-- Does you find it annoying that an important window moves into the background when you're working? Just [set it on top](#set-on-top "Set on top")!
+- Does you find it annoying that an important window moves into the background when you're working? Just [enable always on top](#enable-always-on-top "Enable always on top")!
 
 - Does this window also block the view of the window behind it? Just [set the transparency](#set-transparency "Set transparency")!
 
@@ -131,13 +131,13 @@ Just lists all windows found. This can be used to test whether the windows are f
 
 ![list selected windows](img/introduction/actions/list_selected_windows.png)
 
-#### Set on top
+#### Enable always on top
 
-Ensures that all selected windows always stay on top of other programs. Can be undone with [set not on top](#set-not-on-top "Set not on top").
+Ensures that all selected windows always stay on top of other programs. Can be undone with [disable always on top](#disable-always-on-top "Disable always on top").
 
-#### Set not on top
+#### Disable always on top
 
-Ensures that other windows can again be above the selected windows. Can be undone with [set on top](#set-on-top "Set on top").
+Ensures that other windows can again be above the selected windows. Can be undone with [enable always on top](#enable-always-on-top "Enable always on top").
 
 #### Hide
 
@@ -261,11 +261,11 @@ When activated, no actions are performed on itself.
 
 ![exclude own process](img/introduction/exclude_own_process/description.png)
 
-### Set self on top
+### Stay on top
 
 If activated, auWin always stay on top of other programs.
 
-![set self on top](img/introduction/set_self_on_top/description.png)
+![stay on top](img/introduction/stay_on_top/description.png)
 
 ### Window Title
 

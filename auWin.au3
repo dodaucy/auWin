@@ -51,7 +51,7 @@
     $group_action = GUICtrlCreateGroup("Action", 8, 80, 505, 105)
 
     $combo_action = GUICtrlCreateCombo("List selected windows", 24, 104, 145, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-    GUICtrlSetData(-1, "Set on top|Set not on top|Hide|Show|Disable|Enable|Set transparency...|Set title...|Move...|Resize...|Minimize|Maximize|Restore|Send close signal|Send kill signal|Flash|Display HWND|Display position and size|Display text")
+    GUICtrlSetData(-1, "Enable always on top|Disable always on top|Hide|Show|Disable|Enable|Set transparency...|Set title...|Move...|Resize...|Minimize|Maximize|Restore|Send close signal|Send kill signal|Flash|Display HWND|Display position and size|Display text")
     $handle_combo_action = GUICtrlGetHandle($combo_action)
 
     $button_start = GUICtrlCreateButton("Start", 24, 136, 147, 33)
@@ -98,9 +98,9 @@
     $checkbox_self_protect = GUICtrlCreateCheckbox("Exclude own process (PID " & @AutoItPID & ")", 13, 408, 239, 25)
     GUICtrlSetState(-1, $GUI_CHECKED)
     $handle_checkbox_self_protect = GUICtrlGetHandle($checkbox_self_protect)
-    $checkbox_set_self_on_top = GUICtrlCreateCheckbox("Set self on top", 269, 408, 239, 25)
+    $checkbox_stay_on_top = GUICtrlCreateCheckbox("Stay on top", 269, 408, 239, 25)
     GUICtrlSetState(-1, $GUI_CHECKED)
-    $handle_checkbox_set_self_on_top = GUICtrlGetHandle($checkbox_set_self_on_top)
+    $handle_checkbox_stay_on_top = GUICtrlGetHandle($checkbox_stay_on_top)
 
     $button_introduction = GUICtrlCreateButton("Help / Introduction", 8, 440, 249, 25)
     $button_issue = GUICtrlCreateButton("Give feedback / Report bugs / Ask a question", 264, 440, 249, 25)
@@ -225,9 +225,9 @@ Func WM_COMMAND($hWnd, $Msg, $wParam, $lParam)
             If $notify_code = $BN_CLICKED Then
                 $self_protect = GUICtrlRead($checkbox_self_protect) == 1
             EndIf
-        Case $handle_checkbox_set_self_on_top
+        Case $handle_checkbox_stay_on_top
             If $notify_code = $BN_CLICKED Then
-                WinSetOnTop($auWin, "", GUICtrlRead($checkbox_set_self_on_top))
+                WinSetOnTop($auWin, "", GUICtrlRead($checkbox_stay_on_top))
             EndIf
     EndSwitch
 EndFunc
@@ -270,7 +270,7 @@ While 1
             GUICtrlSetState($input_one_line, $GUI_DISABLE)
             GUICtrlSetState($slider_trans, $GUI_DISABLE)
             GUICtrlSetState($checkbox_self_protect, $GUI_DISABLE)
-            GUICtrlSetState($checkbox_set_self_on_top, $GUI_DISABLE)
+            GUICtrlSetState($checkbox_stay_on_top, $GUI_DISABLE)
             GUICtrlSetState($button_introduction, $GUI_DISABLE)
             GUICtrlSetState($button_issue, $GUI_DISABLE)
 
@@ -340,9 +340,9 @@ While 1
                     Switch $action
                         Case "List selected windows"
                             $output_text = ""
-                        Case "Set on top"
+                        Case "Enable always on top"
                             $output_text = ProcessReturnValue(WinSetOnTop($handle, "", 1))
-                        Case "Set not on top"
+                        Case "Disable always on top"
                             $output_text = ProcessReturnValue(WinSetOnTop($handle, "", 0))
                         Case "Hide"
                             $output_text = ProcessReturnValue(WinSetState($handle, "", @SW_HIDE))
@@ -415,7 +415,7 @@ While 1
             GUICtrlSetState($input_one_line, $GUI_ENABLE)
             GUICtrlSetState($slider_trans, $GUI_ENABLE)
             GUICtrlSetState($checkbox_self_protect, $GUI_ENABLE)
-            GUICtrlSetState($checkbox_set_self_on_top, $GUI_ENABLE)
+            GUICtrlSetState($checkbox_stay_on_top, $GUI_ENABLE)
             GUICtrlSetState($button_introduction, $GUI_ENABLE)
             GUICtrlSetState($button_issue, $GUI_ENABLE)
 
