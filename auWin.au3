@@ -29,7 +29,14 @@
 
 #Region ### Create GUI ###
 
-    $auWin = GUICreate("auWin (v1.1.1)", 522, 474)
+    $version = "v1.1.1"
+
+    $title = "auWin - " & $version & " [" & @UserName & "]"
+    If IsAdmin() Then
+        $title = $title & " (Administrator)"
+    EndIf
+
+    $auWin = GUICreate($title, 522, 474)
     WinSetOnTop($auWin, "", 1)
 
     $group_search_for_windows = GUICtrlCreateGroup("Select windows", 8, 8, 505, 65)
