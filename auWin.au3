@@ -9,7 +9,7 @@
 
 
 #AutoIt3Wrapper_Res_ProductName=auWin
-#AutoIt3Wrapper_Res_Description=auWin is a program with which you can easily change attributes of windows and do other things with windows.
+#AutoIt3Wrapper_Res_Description=auWin is a program with which you can easily edit window attributes and interact with windows. Visit auWin on GitHub: https://github.com/dodaucy/auWin
 #AutoIt3Wrapper_Res_ProductVersion=1.1.2
 #AutoIt3Wrapper_Res_Fileversion=1.1.2
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright (C) 2022 - 2023 dodaucy
